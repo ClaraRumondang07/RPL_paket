@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-Nov-2018 14:35:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Barang" table="barang" catalog="db165314024" optimistic-lock="version">
+        <id name="idBarang" type="string">
+            <column name="idBarang" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="namaPengirim" type="string">
+            <column name="namaPengirim" length="50" />
+        </property>
+        <property name="namaPenerima" type="string">
+            <column name="namaPenerima" length="50" />
+        </property>
+        <property name="noHpPenerima" type="string">
+            <column name="noHpPenerima" length="12" />
+        </property>
+        <property name="noHpPengirim" type="string">
+            <column name="noHpPengirim" length="12" />
+        </property>
+        <property name="alamatTujuan" type="string">
+            <column name="alamatTujuan" length="50" />
+        </property>
+        <property name="alamatPengirim" type="string">
+            <column name="alamatPengirim" length="50" />
+        </property>
+        <property name="tanggalMasuk" type="date">
+            <column name="tanggalMasuk" length="10" />
+        </property>
+        <property name="jenisPengiriman" type="string">
+            <column name="jenisPengiriman" length="20" />
+        </property>
+        <property name="statusBarang" type="string">
+            <column name="statusBarang" length="20" />
+        </property>
+        <property name="totalHarga" type="java.lang.Integer">
+            <column name="totalHarga" />
+        </property>
+        <property name="tanggalDiterima" type="date">
+            <column name="tanggalDiterima" length="10" />
+        </property>
+        <property name="waktuDiterima" type="time">
+            <column name="waktuDiterima" length="8" />
+        </property>
+        <property name="namaKurir" type="string">
+            <column name="namaKurir" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
