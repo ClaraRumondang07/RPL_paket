@@ -6,7 +6,7 @@
 package test;
 
 import com.google.gson.Gson;
-import helper.KurirHelper;
+import helper.kurirHelper;
 import java.util.List;
 import pojos.Kurir;
 
@@ -16,8 +16,8 @@ import pojos.Kurir;
  */
 public class testKurir {
      public static void main(String[] args) {
-        KurirHelper test = new KurirHelper();
-        List<Kurir> list = test.getAllKurir();
+        kurirHelper test = new kurirHelper();
+        List<Kurir> list = test.bacaSemuaKurir();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         System.out.println(json);

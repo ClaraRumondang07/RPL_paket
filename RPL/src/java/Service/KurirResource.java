@@ -6,7 +6,7 @@
 package Service;
 
 import com.google.gson.Gson;
-import helper.KurirHelper;
+import helper.kurirHelper;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -45,8 +45,8 @@ public class KurirResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() {
         //TODO return proper representation object
-        KurirHelper test = new KurirHelper();
-        List<Kurir> list = test.getAllKurir();
+        kurirHelper test = new kurirHelper();
+        List<Kurir> list = test.bacaSemuaKurir();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return Response
