@@ -39,11 +39,12 @@ public class BarangResource {
 
     /**
      * Retrieves representation of an instance of Service.BarangResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-   public Response getJson() {
+    public Response getJson() {
         //TODO return proper representation object
         barangHelper test = new barangHelper();
         List<Barang> list = test.bacaSemuaBarang();
@@ -57,12 +58,39 @@ public class BarangResource {
 
     /**
      * PUT method for updating or creating an instance of BarangResource
+     *
      * @param content representation for the resource
      */
 //    @PUT
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    public void putJson(String content) {
 //    }
-   
-   
+    @POST
+    @Path("addBarang")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addNewPasien(String data) {
+        Gson gson = new Gson();
+        Barang barang = gson.fromJson(data, Barang.class);
+        barangHelper helper = new barangHelper();
+        helper.addNewBarang(
+                barang.getNamaPengirim(),
+                barang.getNamaPenerima(),
+                barang.getNoHpPenerima(),
+                barang.getNoHpPengirim(),
+                barang.getAlamatTujuan(),
+                barang.getAlamatPengirim(),
+                barang.getTanggalMasuk(),
+                barang.getJenisPengiriman(),
+                barang.getStatusBarang(),
+                barang.getTotalHarga(),
+                barang.getTanggalDiterima(),
+                barang.getWaktuDiterima(),
+                barang.getNamaKurir()
+        );
+
+        return Response
+                .status(200)
+                .entity(barang)
+                .build();
+    }
 }
