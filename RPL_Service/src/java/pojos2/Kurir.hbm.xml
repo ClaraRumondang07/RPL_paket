@@ -3,10 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 3, 2018 12:11:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojos.Kurir" table="kurir" catalog="db165314024">
+    <class name="pojos2.Kurir" table="kurir" catalog="db165314024" optimistic-lock="version">
         <id name="nik" type="int">
             <column name="NIK" />
-            <generator class="assigned"></generator>
+            <generator class="assigned" />
         </id>
         <property name="nama" type="string">
             <column name="nama" length="50" />

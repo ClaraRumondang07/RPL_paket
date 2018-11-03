@@ -3,16 +3,16 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 3, 2018 12:11:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojos.TambahKantor" table="tambahKantor" catalog="db165314024">
+    <class name="pojos2.TambahKantor" table="tambahKantor" catalog="db165314024" optimistic-lock="version">
         <id name="idKantor" type="string">
             <column name="idKantor" length="20" />
-            <generator class="assigned"></generator>
+            <generator class="assigned" />
         </id>
         <property name="jenis" type="string">
             <column name="jenis" length="20" />
         </property>
         <property name="tableRouting" type="string">
-            <column name="tableRouting" length="100" />
+            <column name="tableRouting" length="128" />
         </property>
     </class>
 </hibernate-mapping>

@@ -3,10 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 3, 2018 12:11:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojos.Barang" table="barang" catalog="db165314024">
-        <id name="idBarang" type="string">
-            <column name="idBarang" length="20" />
-            <generator class="assigned"></generator>
+    <class name="pojos2.Barang" table="barang" catalog="db165314024" optimistic-lock="version">
+        <id name="idBarang" type="java.lang.Integer">
+            <column name="idBarang" />
+            <generator class="identity" />
         </id>
         <property name="namaPengirim" type="string">
             <column name="namaPengirim" length="50" />
