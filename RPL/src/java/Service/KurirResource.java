@@ -6,7 +6,7 @@
 package Service;
 
 import com.google.gson.Gson;
-import helper.kurirHelper;
+import helper.KurirHelper;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -23,7 +23,7 @@ import pojos.Kurir;
 /**
  * REST Web Service
  *
- * @author willy
+ * @author clara
  */
 @Path("kurir")
 public class KurirResource {
@@ -39,52 +39,28 @@ public class KurirResource {
 
     /**
      * Retrieves representation of an instance of Service.KurirResource
-     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() {
-        kurirHelper helper = new kurirHelper();
-        List<Kurir> list = helper.bacaSemuaKurir();
-        
-        Gson g = new Gson();
-        String json = g.toJson(list);
-        return Response.status(200)
+        //TODO return proper representation object
+        KurirHelper test = new KurirHelper();
+        List<Kurir> list = test.getAllKurir();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return Response
+                .status(200)
                 .entity(json)
                 .build();
     }
 
     /**
      * PUT method for updating or creating an instance of KurirResource
-     *
      * @param content representation for the resource
      */
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void putJson(String content) {
-//    }
-    @POST
-    @Path("addKurir")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewDokter(String data) {
-        Gson gson = new Gson();
-        Kurir kurir = gson.fromJson(data, Kurir.class);
-        kurirHelper helper = new kurirHelper();
-        helper.addNewKurir(
-                kurir.getNama(),
-                kurir.getAlamat(),
-                kurir.getStatus(),
-                kurir.getNoTelp(),
-                kurir.getAgama(),
-                kurir.getTanggalLahir(),
-                kurir.getNik()
-        );
-
-        return Response
-                .status(200)
-                .entity(kurir)
-                .build();
+    public void putJson(String content) {
     }
-
 }

@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 3, 2018 12:11:18 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2018 1:37:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="db165314024" name="pojos.TambahKantor" optimistic-lock="version" table="tambahKantor">
-    <id name="idKantor" type="string">
-      <column length="20" name="idKantor"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="jenis" type="string">
-      <column length="20" name="jenis"/>
-    </property>
-    <property name="tableRouting" type="string">
-      <column length="128" name="tableRouting"/>
-    </property>
-  </class>
+    <class name="pojos.TambahKantor" table="tambahKantor" catalog="db165314024" optimistic-lock="version">
+        <id name="idKantor" type="string">
+            <column name="idKantor" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="jenis" type="string">
+            <column name="jenis" length="20" />
+        </property>
+        <property name="tableRouting" type="string">
+            <column name="tableRouting" length="128" />
+        </property>
+    </class>
 </hibernate-mapping>

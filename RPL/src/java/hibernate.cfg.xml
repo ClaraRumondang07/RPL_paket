@@ -41,9 +41,14 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://202.94.83.190:3306/db165314024?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">165314024</property>
     <property name="hibernate.connection.password">165314024</property>
-    <property name="hibernate.connection.url">jdbc:mysql://202.94.83.190:3306/db165314024?zeroDateTimeBehavior=convertToNull</property>
+    <mapping resource="pojos/Kurir.hbm.xml"/>
+    <mapping resource="pojos/TambahKantor.hbm.xml"/>
+    <mapping resource="pojos/User.hbm.xml"/>
+    <mapping resource="pojos/Barang.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
