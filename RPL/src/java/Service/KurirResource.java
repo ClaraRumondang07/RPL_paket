@@ -59,8 +59,31 @@ public class KurirResource {
      * PUT method for updating or creating an instance of KurirResource
      * @param content representation for the resource
      */
-    @PUT
+//    @PUT
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void putJson(String content) {
+//    }
+    
+     @POST
+    @Path("addKurir")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    public Response addNewDokter(String data) {
+        Gson gson = new Gson();
+        Kurir kurir = gson.fromJson(data, Kurir.class);
+        kurirHelper helper = new kurirHelper();
+        helper.addNewKurir(
+                kurir.getNik(),
+                kurir.getNama(),
+                kurir.getAlamat(),
+                kurir.getStatus(),
+                kurir.getNoTelp(),
+                kurir.getAgama(),
+                kurir.getTanggalLahir()
+        );
+
+        return Response
+                .status(200)
+                .entity(kurir)
+                .build();
     }
 }

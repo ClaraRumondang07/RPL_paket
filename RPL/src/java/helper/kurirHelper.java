@@ -27,13 +27,13 @@ public class kurirHelper {
         return list;
     }
     
-    public void addNewKurir(String nama, 
+    public void addNewKurir(int nik, 
+            String nama, 
             String alamat, 
-            String status,
-            String noTelp,
-            String agama,
-            Date tanggalLahir,
-            int nik
+            String status, 
+            String noTelp, 
+            String agama, 
+            Date tanggalLahir
             ) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
