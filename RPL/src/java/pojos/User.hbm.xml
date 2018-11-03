@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2018 12:11:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="db165314024" name="pojos.User" optimistic-lock="version" table="user">
+    <id name="id" type="string">
+      <column length="20" name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="password" type="string">
+      <column length="50" name="password"/>
+    </property>
+  </class>
+</hibernate-mapping>
