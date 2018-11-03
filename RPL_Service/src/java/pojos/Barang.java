@@ -10,7 +10,7 @@ import java.util.Date;
 public class Barang  implements java.io.Serializable {
 
 
-     private String idBarang;
+     private Integer idBarang;
      private String namaPengirim;
      private String namaPenerima;
      private String noHpPenerima;
@@ -28,12 +28,7 @@ public class Barang  implements java.io.Serializable {
     public Barang() {
     }
 
-	
-    public Barang(String idBarang) {
-        this.idBarang = idBarang;
-    }
-    public Barang(String idBarang, String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, Integer totalHarga, Date tanggalDiterima, Date waktuDiterima, String namaKurir) {
-       this.idBarang = idBarang;
+    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, Integer totalHarga, Date tanggalDiterima, Date waktuDiterima, String namaKurir) {
        this.namaPengirim = namaPengirim;
        this.namaPenerima = namaPenerima;
        this.noHpPenerima = noHpPenerima;
@@ -49,11 +44,11 @@ public class Barang  implements java.io.Serializable {
        this.namaKurir = namaKurir;
     }
    
-    public String getIdBarang() {
+    public Integer getIdBarang() {
         return this.idBarang;
     }
     
-    public void setIdBarang(String idBarang) {
+    public void setIdBarang(Integer idBarang) {
         this.idBarang = idBarang;
     }
     public String getNamaPengirim() {

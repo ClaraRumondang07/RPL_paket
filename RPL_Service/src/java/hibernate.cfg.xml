@@ -50,9 +50,9 @@ Contributor(s):
     <mapping resource="pojos/User.hbm.xml"/>
     <mapping resource="pojos/Kurir.hbm.xml"/>
     <mapping resource="pojos/TambahKantor.hbm.xml"/>
-    <mapping resource="pojos2/Barang.hbm.xml"/>
-    <mapping resource="pojos2/Kurir.hbm.xml"/>
-    <mapping resource="pojos2/TambahKantor.hbm.xml"/>
-    <mapping resource="pojos2/User.hbm.xml"/>
+    <mapping resource="pojos/Barang.hbm.xml"/>
+    <mapping resource="pojos/Kurir.hbm.xml"/>
+    <mapping resource="pojos/TambahKantor.hbm.xml"/>
+    <mapping resource="pojos/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
