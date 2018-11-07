@@ -13,6 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
@@ -78,5 +79,16 @@ public class TransaksiResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+    }
+    
+    @POST
+    @Path("simpan")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response simpanTransaksi(String data) {
+        Gson gson = new Gson();
+        TabelTransaksi trans = gson.fromJson(data, TabelTransaksi.class);
+        TransaksiHelper help = new TransaksiHelper();
+        help.transaksiBaru(trans.getNamaBarang(), trans.getHargaBarang(), trans.getJumlahBarang(), trans.getHargaTotal(), (Date) trans.getTanggal());
+        return Response.status(200).entity(trans).build();
     }
 }

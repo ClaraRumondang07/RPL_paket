@@ -8,6 +8,7 @@ package helper;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojos.TabelStokGudang;
 import util.RPLHibernateUtil;
 
@@ -27,5 +28,16 @@ public class StokGudangHelper {
         List<TabelStokGudang> list = q.list();
         session.close();
         return list;
+    }
+    
+    public void tambahStokGudang(String namaBarang, 
+            Integer jumlahBarang) {
+        
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        TabelStokGudang stokGudang = new TabelStokGudang(namaBarang, jumlahBarang);
+        session.saveOrUpdate(stokGudang);
+        transaction.commit();
+        session.close();
     }
 }

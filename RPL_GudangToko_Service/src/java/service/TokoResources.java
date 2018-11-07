@@ -12,6 +12,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
@@ -79,5 +80,16 @@ public class TokoResources {
                 .header("Access-Control-Max-Age", "2")
                 .header("Access-Preflight-Maxage", "2")
                 .build();
+    }
+    
+    @POST
+    @Path("tambahToko")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response tambahToko(String data) {
+        Gson gson = new Gson();
+        TabelToko toko = gson.fromJson(data, TabelToko.class);
+        TokoHelper help = new TokoHelper();
+        help.tambahToko(toko.getNamaToko(), toko.getAlamatToko());
+        return Response.status(200).entity(toko).build();
     }
 }

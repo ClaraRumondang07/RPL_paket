@@ -5,10 +5,13 @@
  */
 package helper;
 
+import java.sql.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojos.TabelKirimBarang;
+import pojos.TabelStokGudang;
 import util.RPLHibernateUtil;
 
 /**
@@ -27,5 +30,16 @@ public class KirimBarangHelper {
         List<TabelKirimBarang> list = q.list();
         session.close();
         return list;
+    }
+    
+    public void kirimBarang(String namaBarang, 
+            Integer jumlahBarang, Date tanggal){
+        
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        TabelKirimBarang kirim = new TabelKirimBarang(namaBarang, jumlahBarang, tanggal);
+        session.saveOrUpdate(kirim);
+        transaction.commit();
+        session.close();
     }
 }

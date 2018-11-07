@@ -18,10 +18,10 @@ public class testKirimBarang {
         KirimBarangHelper hp = new KirimBarangHelper();
         List<TabelKirimBarang> list = hp.getAllKirimBarang();
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getIdbarang());
-            System.out.println(list.get(i).getNamaBarang());
-            System.out.println(list.get(i).getJumlahBarang());
-            System.out.println(list.get(i).getTanggal());
+            System.out.println("id barang: "+list.get(i).getIdbarang());
+            System.out.println("nama barang: "+list.get(i).getNamaBarang());
+            System.out.println("jumlah barang: "+list.get(i).getJumlahBarang());
+            System.out.println("tanggal: "+list.get(i).getTanggal());
         }
     }
 }

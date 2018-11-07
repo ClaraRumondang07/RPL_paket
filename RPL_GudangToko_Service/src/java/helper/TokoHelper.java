@@ -8,6 +8,7 @@ package helper;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojos.TabelToko;
 import util.RPLHibernateUtil;
 
@@ -43,5 +44,15 @@ public class TokoHelper {
         } else {
             return null;
         }
+    }
+    
+    public void tambahToko(String namaToko, String alamatToko) {
+        
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        TabelToko toko = new TabelToko(namaToko, alamatToko);
+        session.saveOrUpdate(toko);
+        transaction.commit();
+        session.close();
     }
 }

@@ -12,6 +12,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
@@ -73,5 +74,16 @@ public class StokGudangResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+    }
+    
+    @POST
+    @Path("tambahStokGudang")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response tambahStokGudang(String data){
+        Gson gson = new Gson();
+        TabelStokGudang stok = gson.fromJson(data, TabelStokGudang.class);
+        StokGudangHelper help = new StokGudangHelper();
+        help.tambahStokGudang(stok.getNamaBarang(), stok.getJumlahBarang());
+        return Response.status(200).entity(stok).build();
     }
 }

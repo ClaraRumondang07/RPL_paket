@@ -1,5 +1,5 @@
 package pojos;
-// Generated 06-Nov-2018 10:28:42 by Hibernate Tools 4.3.1
+// Generated 06-Nov-2018 16:34:08 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,17 +10,29 @@ import java.util.Date;
 public class TabelTransaksi  implements java.io.Serializable {
 
 
-     private Integer idbarang;
+     private Integer idtransaksi;
+     private TabelStokBarangToko tabelStokBarangToko;
+     private TabelToko tabelToko;
      private String namaBarang;
-     private Integer hargaBarang;
-     private Integer jumlahBarang;
-     private Integer hargaTotal;
+     private int hargaBarang;
+     private int jumlahBarang;
+     private int hargaTotal;
      private Date tanggal;
 
     public TabelTransaksi() {
     }
 
-    public TabelTransaksi(String namaBarang, Integer hargaBarang, Integer jumlahBarang, Integer hargaTotal, Date tanggal) {
+	
+    public TabelTransaksi(String namaBarang, int hargaBarang, int jumlahBarang, int hargaTotal, Date tanggal) {
+        this.namaBarang = namaBarang;
+        this.hargaBarang = hargaBarang;
+        this.jumlahBarang = jumlahBarang;
+        this.hargaTotal = hargaTotal;
+        this.tanggal = tanggal;
+    }
+    public TabelTransaksi(TabelStokBarangToko tabelStokBarangToko, TabelToko tabelToko, String namaBarang, int hargaBarang, int jumlahBarang, int hargaTotal, Date tanggal) {
+       this.tabelStokBarangToko = tabelStokBarangToko;
+       this.tabelToko = tabelToko;
        this.namaBarang = namaBarang;
        this.hargaBarang = hargaBarang;
        this.jumlahBarang = jumlahBarang;
@@ -28,12 +40,26 @@ public class TabelTransaksi  implements java.io.Serializable {
        this.tanggal = tanggal;
     }
    
-    public Integer getIdbarang() {
-        return this.idbarang;
+    public Integer getIdtransaksi() {
+        return this.idtransaksi;
     }
     
-    public void setIdbarang(Integer idbarang) {
-        this.idbarang = idbarang;
+    public void setIdtransaksi(Integer idtransaksi) {
+        this.idtransaksi = idtransaksi;
+    }
+    public TabelStokBarangToko getTabelStokBarangToko() {
+        return this.tabelStokBarangToko;
+    }
+    
+    public void setTabelStokBarangToko(TabelStokBarangToko tabelStokBarangToko) {
+        this.tabelStokBarangToko = tabelStokBarangToko;
+    }
+    public TabelToko getTabelToko() {
+        return this.tabelToko;
+    }
+    
+    public void setTabelToko(TabelToko tabelToko) {
+        this.tabelToko = tabelToko;
     }
     public String getNamaBarang() {
         return this.namaBarang;
@@ -42,25 +68,25 @@ public class TabelTransaksi  implements java.io.Serializable {
     public void setNamaBarang(String namaBarang) {
         this.namaBarang = namaBarang;
     }
-    public Integer getHargaBarang() {
+    public int getHargaBarang() {
         return this.hargaBarang;
     }
     
-    public void setHargaBarang(Integer hargaBarang) {
+    public void setHargaBarang(int hargaBarang) {
         this.hargaBarang = hargaBarang;
     }
-    public Integer getJumlahBarang() {
+    public int getJumlahBarang() {
         return this.jumlahBarang;
     }
     
-    public void setJumlahBarang(Integer jumlahBarang) {
+    public void setJumlahBarang(int jumlahBarang) {
         this.jumlahBarang = jumlahBarang;
     }
-    public Integer getHargaTotal() {
+    public int getHargaTotal() {
         return this.hargaTotal;
     }
     
-    public void setHargaTotal(Integer hargaTotal) {
+    public void setHargaTotal(int hargaTotal) {
         this.hargaTotal = hargaTotal;
     }
     public Date getTanggal() {

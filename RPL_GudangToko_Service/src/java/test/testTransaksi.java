@@ -18,7 +18,7 @@ public class testTransaksi {
         TransaksiHelper help = new TransaksiHelper();
         List<TabelTransaksi> list = help.getAllTransaksi();
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getIdbarang());
+            System.out.println(list.get(i).getIdtransaksi());
             System.out.println(list.get(i).getNamaBarang());
             System.out.println(list.get(i).getHargaBarang());
             System.out.println(list.get(i).getJumlahBarang());

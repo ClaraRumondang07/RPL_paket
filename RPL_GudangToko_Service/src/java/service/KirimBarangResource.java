@@ -13,6 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
@@ -75,5 +76,16 @@ public class KirimBarangResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+    }
+    
+    @POST
+    @Path("simpan")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response simpanKirimBarang(String data){
+        Gson gson = new Gson();
+        TabelKirimBarang kirim = gson.fromJson(data, TabelKirimBarang.class);
+        KirimBarangHelper help = new KirimBarangHelper();
+        help.kirimBarang(kirim.getNamaBarang(), kirim.getJumlahBarang(), (Date) kirim.getTanggal());
+        return Response.status(200).entity(kirim).build();
     }
 }
