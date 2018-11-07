@@ -22,7 +22,7 @@ public class testTransaksi_add {
             TransaksiHelper transaksi = new TransaksiHelper();
             SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
             Date tgl = date.parse("20181106");
-            transaksi.transaksiBaru("Dettol Tisu Basah", 8000, 1, 8000, (java.sql.Date) tgl);
+            transaksi.transaksiBaru("Dettol Tisu Basah", 8000, 1, 8000, tgl);
         } catch (Exception e) {
             Logger.getLogger(testTransaksi_add.class.getName()).log(Level.SEVERE, null, e);
         }
