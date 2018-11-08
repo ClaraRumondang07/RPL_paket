@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-Nov-2018 16:34:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.TabelStokBarangToko" table="`Tabel Stok Barang Toko`" catalog="db165314035" optimistic-lock="version">
+        <id name="idbarangToko" type="java.lang.Integer">
+            <column name="IDBarangToko" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tabelKirimBarang" class="pojos.TabelKirimBarang" fetch="select">
+            <column name="IDBarang" />
+        </many-to-one>
+        <many-to-one name="tabelToko" class="pojos.TabelToko" fetch="select">
+            <column name="IDToko" />
+        </many-to-one>
+        <property name="namaBarang" type="string">
+            <column name="namaBarang" length="20" not-null="true" />
+        </property>
+        <property name="jumlahBarang" type="int">
+            <column name="jumlahBarang" not-null="true" />
+        </property>
+        <property name="hargaBarang" type="int">
+            <column name="hargaBarang" not-null="true" />
+        </property>
+        <set name="tabelTransaksis" table="`Tabel Transaksi`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBarangToko" />
+            </key>
+            <one-to-many class="pojos.TabelTransaksi" />
+        </set>
+    </class>
+</hibernate-mapping>
