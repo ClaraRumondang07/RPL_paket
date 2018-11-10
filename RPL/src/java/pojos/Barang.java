@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 3, 2018 1:37:49 PM by Hibernate Tools 4.3.1
+// Generated Nov 10, 2018 2:58:24 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,15 +20,16 @@ public class Barang  implements java.io.Serializable {
      private Date tanggalMasuk;
      private String jenisPengiriman;
      private String statusBarang;
-     private Integer totalHarga;
+     private int totalHarga;
      private Date tanggalDiterima;
      private Date waktuDiterima;
      private String namaKurir;
+     private String tableRouting;
 
     public Barang() {
     }
 
-    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, Integer totalHarga, Date tanggalDiterima, Date waktuDiterima, String namaKurir) {
+    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, Date waktuDiterima, String namaKurir, String tableRouting) {
        this.namaPengirim = namaPengirim;
        this.namaPenerima = namaPenerima;
        this.noHpPenerima = noHpPenerima;
@@ -42,6 +43,7 @@ public class Barang  implements java.io.Serializable {
        this.tanggalDiterima = tanggalDiterima;
        this.waktuDiterima = waktuDiterima;
        this.namaKurir = namaKurir;
+       this.tableRouting = tableRouting;
     }
    
     public Integer getIdBarang() {
@@ -114,11 +116,11 @@ public class Barang  implements java.io.Serializable {
     public void setStatusBarang(String statusBarang) {
         this.statusBarang = statusBarang;
     }
-    public Integer getTotalHarga() {
+    public int getTotalHarga() {
         return this.totalHarga;
     }
     
-    public void setTotalHarga(Integer totalHarga) {
+    public void setTotalHarga(int totalHarga) {
         this.totalHarga = totalHarga;
     }
     public Date getTanggalDiterima() {
@@ -141,6 +143,13 @@ public class Barang  implements java.io.Serializable {
     
     public void setNamaKurir(String namaKurir) {
         this.namaKurir = namaKurir;
+    }
+    public String getTableRouting() {
+        return this.tableRouting;
+    }
+    
+    public void setTableRouting(String tableRouting) {
+        this.tableRouting = tableRouting;
     }
 
 
