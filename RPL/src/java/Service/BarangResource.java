@@ -16,6 +16,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import pojos.Barang;
@@ -92,6 +93,32 @@ public class BarangResource {
         return Response
                 .status(200)
                 .entity(barang)
+                .build();
+    }
+    
+    @GET
+    @Path("cariBarang")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response Login(
+            @QueryParam("idBarang") Integer idBarang){
+        barangHelper helper = new barangHelper();
+        Barang hasil = helper.cariBarang(idBarang);
+//        boolean hasil = helper.login(email, password);
+        Gson gson = new Gson();
+        
+         return Response.status(200)
+                .entity(gson.toJson(hasil))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age","2")
+                .header("Access-Preflight-Maxage", "2")
                 .build();
     }
 }

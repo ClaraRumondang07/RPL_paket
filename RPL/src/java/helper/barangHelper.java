@@ -51,4 +51,21 @@ public class barangHelper {
         transaction.commit();
         session.close();
     }
+    
+    
+    public Barang cariBarang(Integer idBarang) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String query = "from Barang u where u.idBarang=:idBarang";
+        Query q = session.createQuery(query);
+        q.setParameter("idBarang", idBarang);
+        List<Barang> list = q.list();
+        tx.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
 }
