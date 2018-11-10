@@ -39,12 +39,14 @@ public class barangHelper {
             Integer totalHarga, 
             Date tanggalDiterima, 
             Date waktuDiterima, 
-            String namaKurir
+            String namaKurir,
+            String tableRouting
+            
             ) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
         Transaction transaction = session.beginTransaction();
-        Barang barang = new Barang(namaPengirim, namaPenerima, noHpPenerima, noHpPengirim, alamatTujuan, alamatPengirim, tanggalMasuk, jenisPengiriman, statusBarang, totalHarga, tanggalDiterima, waktuDiterima, namaKurir);
+        Barang barang = new Barang(namaPengirim, namaPenerima, noHpPenerima, noHpPengirim, alamatTujuan, alamatPengirim, tanggalMasuk, jenisPengiriman, statusBarang, totalHarga, tanggalDiterima, waktuDiterima, namaKurir, tableRouting);
         session.saveOrUpdate(barang);
         transaction.commit();
         session.close();

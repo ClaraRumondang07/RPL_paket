@@ -85,7 +85,8 @@ public class BarangResource {
                 barang.getTotalHarga(),
                 barang.getTanggalDiterima(),
                 barang.getWaktuDiterima(),
-                barang.getNamaKurir()
+                barang.getNamaKurir(),
+                barang.getTableRouting()
         );
 
         return Response
