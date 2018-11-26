@@ -38,7 +38,7 @@ public class barangHelper {
             String statusBarang, 
             Integer totalHarga, 
             Date tanggalDiterima, 
-            Date waktuDiterima, 
+            String waktuDiterima, 
             String namaKurir,
             String tableRouting
             

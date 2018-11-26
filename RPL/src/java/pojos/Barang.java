@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 10, 2018 2:58:24 PM by Hibernate Tools 4.3.1
+// Generated Nov 26, 2018 5:34:51 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,14 +22,14 @@ public class Barang  implements java.io.Serializable {
      private String statusBarang;
      private int totalHarga;
      private Date tanggalDiterima;
-     private Date waktuDiterima;
+     private String waktuDiterima;
      private String namaKurir;
      private String tableRouting;
 
     public Barang() {
     }
 
-    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, Date waktuDiterima, String namaKurir, String tableRouting) {
+    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, String waktuDiterima, String namaKurir, String tableRouting) {
        this.namaPengirim = namaPengirim;
        this.namaPenerima = namaPenerima;
        this.noHpPenerima = noHpPenerima;
@@ -130,11 +130,11 @@ public class Barang  implements java.io.Serializable {
     public void setTanggalDiterima(Date tanggalDiterima) {
         this.tanggalDiterima = tanggalDiterima;
     }
-    public Date getWaktuDiterima() {
+    public String getWaktuDiterima() {
         return this.waktuDiterima;
     }
     
-    public void setWaktuDiterima(Date waktuDiterima) {
+    public void setWaktuDiterima(String waktuDiterima) {
         this.waktuDiterima = waktuDiterima;
     }
     public String getNamaKurir() {
