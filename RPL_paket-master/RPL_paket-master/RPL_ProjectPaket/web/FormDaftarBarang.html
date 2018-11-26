@@ -259,7 +259,7 @@ and open the template in the editor.
                         </div><br>
                         <div class="form-group">
                             <label for="starusBarang">Status Barang</label><br>
-                            <input type="text" placeholder="Enter Status Barang" id="starusBarang" required disabled=""/>
+                            <input type="text" placeholder="Enter Status Barang" id="statusBarang" required disabled=""/>
                         </div><br>
                         <div class="form-group">
                             <label for="totalHarga">Total Harga</label><br>
@@ -276,16 +276,26 @@ and open the template in the editor.
 
         <script>
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/rsku/webresources/pasien/cariPasien?nik=" + nik.value;
+                // var url = "http://202.94.83.190:8080/rsku/webresources/pasien/cariPasien?nik=" + nik.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("output").innerHTML = this.responseText;
+                       // document.getElementById("output").innerHTML = this.responseText;
                         var myObj = JSON.parse(this.responseText);
-                        document.getElementById("nama").value = myObj.nama;
-                        document.getElementById("alamat").value = myObj.alamat;
+                        document.getElementById("idBarang").value = myObj.idBarang;
+                        document.getElementById("namaPengirim").value = myObj.namaPengirim;
+                        document.getElementById("noHpPenerima").value = myObj.noHpPenerima;
+                        document.getElementById("noHpPengirim").value = myObj.noHpPengirim;
+                        document.getElementById("alamatTujuan").value = myObj.alamatTujuan;
+                        document.getElementById("alamatPengirim").value = myObj.alamatPengirim;
+                        document.getElementById("tanggalMasuk").value = myObj.tanggalMasuk;
+                        document.getElementById("jenisPengiriman").value = myObj.jenisPengiriman;
+                        document.getElementById("statusBarang").value = myObj.statusBarang;
+                        document.getElementById("totalHarga").value = myObj.totalHarga;
+                        
+                        
                     }
                 }
             }
