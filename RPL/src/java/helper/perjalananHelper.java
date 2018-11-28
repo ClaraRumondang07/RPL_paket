@@ -30,12 +30,15 @@ public class perjalananHelper {
     public void addNewPerjalanan(
             int idBarang, 
             String asal, 
-            String tujuan
+            String tujuan,
+            String waktuDiterima, 
+            Date tanggalDiterima, 
+            String namaPenerima
             ) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
         Transaction transaction = session.beginTransaction();
-        Perjalanan perjalanan = new Perjalanan(idBarang, asal, tujuan);
+        Perjalanan perjalanan = new Perjalanan(idBarang, asal, tujuan, waktuDiterima, tanggalDiterima, namaPenerima);
         session.saveOrUpdate(perjalanan);
         transaction.commit();
         session.close();

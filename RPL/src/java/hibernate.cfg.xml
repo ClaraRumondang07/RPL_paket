@@ -48,8 +48,8 @@ Contributor(s):
     <property name="hibernate.connection.password">165314024</property>
     <mapping resource="pojos/User.hbm.xml"/>
     <mapping resource="pojos/Barang.hbm.xml"/>
-    <mapping resource="pojos/TambahKantor.hbm.xml"/>
     <mapping resource="pojos/Perjalanan.hbm.xml"/>
+    <mapping resource="pojos/Kantor.hbm.xml"/>
     <mapping resource="pojos/Kurir.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

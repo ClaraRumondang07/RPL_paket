@@ -5,7 +5,7 @@
  */
 package helper;
 
-import pojos.TambahKantor;
+import pojos.Kantor;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
@@ -18,10 +18,10 @@ import util.NewHibernateUtil;
  * @author clara
  */
 public class tambahKantorHelper {
-    public List<TambahKantor> bacaSemuaKantor() {
-        List<TambahKantor> list = null;
+    public List<Kantor> bacaSemuaKantor() {
+        List<Kantor> list = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from TambahKantor TB");
+        Query q = session.createQuery("from Kantor TB");
         list = q.list();
         session.close();
         return list;
@@ -35,7 +35,7 @@ public class tambahKantorHelper {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
         Transaction transaction = session.beginTransaction();
-        TambahKantor kantor = new TambahKantor(idKantor, jenis, posisi);
+        Kantor kantor = new Kantor(idKantor, jenis, posisi);
         session.saveOrUpdate(kantor);
         transaction.commit();
         session.close();

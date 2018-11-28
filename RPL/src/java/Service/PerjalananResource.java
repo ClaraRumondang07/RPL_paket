@@ -77,7 +77,10 @@ public class PerjalananResource {
         helper.addNewPerjalanan(
                 perjalanan.getIdBarang(),
                 perjalanan.getAsal(),
-                perjalanan.getTujuan()
+                perjalanan.getTujuan(),
+                perjalanan.getWaktuDiterima(),
+                perjalanan.getTanggalDiterima(),
+                perjalanan.getNamaPenerima()
         );
         return Response
                 .status(200)

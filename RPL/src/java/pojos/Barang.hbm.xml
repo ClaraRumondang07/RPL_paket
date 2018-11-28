@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28-Nov-2018 10:40:37 by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-Nov-2018 03:14:24 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojos.Barang" table="barang" catalog="db165314024" optimistic-lock="version">
         <id name="idBarang" type="java.lang.Integer">
@@ -33,19 +33,19 @@
             <column name="jenisPengiriman" length="20" not-null="true" />
         </property>
         <property name="statusBarang" type="string">
-            <column name="statusBarang" length="40" not-null="true" />
+            <column name="statusBarang" length="40" />
         </property>
         <property name="totalHarga" type="int">
             <column name="totalHarga" not-null="true" />
         </property>
         <property name="tanggalDiterima" type="date">
-            <column name="tanggalDiterima" length="10" not-null="true" />
+            <column name="tanggalDiterima" length="10" />
         </property>
         <property name="waktuDiterima" type="string">
-            <column name="waktuDiterima" length="20" not-null="true" />
+            <column name="waktuDiterima" length="20" />
         </property>
         <property name="namaKurir" type="string">
-            <column name="namaKurir" length="50" not-null="true" />
+            <column name="namaKurir" length="50" />
         </property>
     </class>
 </hibernate-mapping>

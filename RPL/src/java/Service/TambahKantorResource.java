@@ -18,7 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pojos.TambahKantor;
+import pojos.Kantor;
 
 /**
  * REST Web Service
@@ -46,7 +46,7 @@ public class TambahKantorResource {
     public Response getJson() {
        //TODO return proper representation object
         tambahKantorHelper test = new tambahKantorHelper();
-        List<TambahKantor> list = test.bacaSemuaKantor();
+        List<Kantor> list = test.bacaSemuaKantor();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return Response
@@ -69,7 +69,7 @@ public class TambahKantorResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addNewKantor(String data) {
         Gson gson = new Gson();
-        TambahKantor kantor = gson.fromJson(data, TambahKantor.class);
+        Kantor kantor = gson.fromJson(data, Kantor.class);
         tambahKantorHelper helper = new tambahKantorHelper();
         helper.addNewKantor(kantor.getIdKantor(), kantor.getJenis(), kantor.getPosisi());
 
