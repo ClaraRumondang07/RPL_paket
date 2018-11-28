@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>RPL Paket</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Krona+One|Sura" rel="stylesheet">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Style the header */
+            header {
+                font-family:'Krona One', sans-serif;
+                font-size: 30px; 
+                color: #00aaff;
+                background-color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+            /* Create two columns/boxes that floats next to each other */
+            nav {
+                float: left;
+                width: 30%;
+                height: 700px;
+                font-family: trebuchet ms;
+                background: white;
+                padding: 20px;
+                text-align: left;
+                background-repeat: no-repeat;
+                background-size: 400px;
+            }
+
+            article {
+                float: left;
+                padding: 20px;
+                width: 70%;
+                background-color: white;
+                height: 700px;                 
+                font-family: trebuchet ms;
+                background-image: url("sky.png");
+                background-repeat: no-repeat;
+                background-position: right;
+                background-size: 335px;
+            }
+
+            /* Clear floats after the columns */
+            section:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Style the footer */
+            footer {
+                background-color: white;
+                padding: 10px;
+                text-align: center;
+                font-family:palatino; 
+                font-size: 20px; 
+                color: darkmagenta;
+            }
+
+            /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+            @media (max-width: 600px) {
+                nav, article {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        </style>
+        <!--css menu-->
+        <style>
+            body {
+                margin: 0;
+                /*font-family: Arial, Helvetica, sans-serif;*/
+                font-family: trebuchet ms;
+            }
+
+            .topnav {
+                overflow: hidden;
+                background-color: #00bfff;
+            }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            .topnav a:hover {
+                background-color: white;
+                color: black;
+            }
+
+            .topnav a.active {
+                /*background-color: #4CAF50;*/
+                background-color: white;
+                color: black;
+            }
+        </style>
+        <!--css dropdown menu-->
+        <style>
+            /* Navbar container */
+            .navbar {
+                overflow: hidden;
+                background-color: #00bfff;
+                font-family: trebuchet ms;
+            }
+
+            /* Links inside the navbar */
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                font-family: trebuchet ms;
+                /*text-decoration: none;*/
+            }
+
+            /* The dropdown container */
+            .dropdown {
+                float: left;
+                overflow: hidden;
+            }
+
+            /* Dropdown button */
+            .dropdown .dropbtn {
+                font-size: 17px; 
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: #00bfff;
+                font-family: trebuchet ms; /* Important for vertical align on mobile phones */
+                margin: 0; /* Important for vertical align on mobile phones */
+            }
+
+            /* Add a white background color to navbar links on hover */
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                color: black;
+                background-color: white;
+            }
+
+            /* Dropdown content (hidden by default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #00bfff;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                background-color: white;
+            }
+
+            /* Add a blue background color to dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #99dfff;
+            }
+
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+        </style>        
+    </head>
+    <body>
+        <header>
+            <h1>Project RPL Paket</h1>
+        </header>
+
+        <div class="topnav">
+            <a href="FormLogin.html">Home</a>
+            <a href="FormDaftarKurir.html" class="active">Pendaftaran Kurir</a>
+            <a href="FormTracking.html">Tracking Paket</a>
+        </div>
+
+        <section id="register" class="">            
+            <nav>
+                <h3>Ingin mendaftar menjadi kurir?</h3>
+                <p>Silakan isikan data diri Anda</p>
+                <!--                <p>Cukup dengan mengisikan NIK yang telah terdaftar</p>-->
+            </nav>
+
+            <article>
+                <h3 style="text-align: center;"><b><u>FORM PENDAFTARAN KURIR</u></b></h3>
+                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                    <div class="container"><br>
+                        <div class ="form-group">
+                            <label for="nik">NIK</label><br>
+                            <input type="text" placeholder="Enter NIK" id="nik" required/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="nama">Nama</label><br>
+                            <input type="text" placeholder="Enter Nama" id="nama" required/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="alamat">Alamat Tinggal</label><br>
+                            <input type="text" placeholder="Enter Alamat" id="alamat" required/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="agama">Agama</label><br>
+                            <!--<input type="text" placeholder="Enter Agama" id="agama" required/>-->
+                        </div>
+                        <div>
+                            <select name="agama" id="agama">
+                                <option label="--Silakan Pilih--"></option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Budha">Budha</option>
+                                <option value="Konghu Chu">Konghu Chu</option>
+                                <option value="Yahudi">Yahudi</option>                                
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="tanggalLahir">Tanggal Lahir</label><br>
+                            <input type="date" placeholder="Enter Tanggal Lahir" id="tanggalLahir" required/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="status">Status</label><br>                            
+                        </div>
+                        <div>
+                            <select name="status" id="status">
+                                <option label="--Silakan Pilih--"></option>
+                                <option value="Nikah">Nikah</option>
+                                <option value="Belum nikah">Belum nikah</option>                                
+                            </select>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="noTelp">No. Telepon</label><br>
+                            <input type="text" placeholder="Enter No. Telp" id="noTelp" required/>
+                        </div><br><br>                        
+                        <div class="clearfix">
+                            <button id="cancel" type="reset">BATAL</button>
+                            <button id="save" type="submit" class="signup">DAFTAR</button>
+                        </div><br><br>
+                    </div>
+                    <p id="output"></p>
+                </form>
+            </article>
+        </section>
+
+        <script>
+            function make_json(form) {
+                var json = {
+                    "nik": form.nik.value,
+                    "nama": form.nama.value,
+                    "alamat": form.alamat.value,
+                    "agama": form.agama.value,
+                    "tanggalLahir": form.tanggalLahir.value,
+                    "status": form.status.value,
+                    "noTelp": form.noTelp.value,
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/kurir/addKurir";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false)
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+
+                alert(html);
+                document.getElementById("output").innerHTML = html;
+                return false;
+            }
+        </script>
+
+        <footer>
+            <p>PT. PROJECT RPL PAKET</p>
+        </footer>
+
+    </body>
+</html>
+
