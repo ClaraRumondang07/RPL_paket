@@ -6,7 +6,7 @@
 package Service;
 
 import com.google.gson.Gson;
-import helper.barangHelper;
+import helper.perjalananHelper;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -19,36 +19,36 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import pojos.Barang;
+import pojos.Perjalanan;
 
 /**
  * REST Web Service
  *
- * @author clara
+ * @author willy
  */
-@Path("barang")
-public class BarangResource {
+@Path("Perjalanan")
+public class PerjalananResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of BarangResource
+     * Creates a new instance of PerjalananResource
      */
-    public BarangResource() {
+    public PerjalananResource() {
     }
 
     /**
-     * Retrieves representation of an instance of Service.BarangResource
+     * Retrieves representation of an instance of Service.PerjalananResource
      *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() {
-        //TODO return proper representation object
-        barangHelper test = new barangHelper();
-        List<Barang> list = test.bacaSemuaBarang();
+
+        perjalananHelper test = new perjalananHelper();
+        List<Perjalanan> list = test.bacaSemuaPerjalanan();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return Response
@@ -58,50 +58,40 @@ public class BarangResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of BarangResource
+     * PUT method for updating or creating an instance of PerjalananResource
      *
      * @param content representation for the resource
      */
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void putJson(String content) {
-//    }
-    @POST
-    @Path("addBarang")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPasien(String data) {
-        Gson gson = new Gson();
-        Barang barang = gson.fromJson(data, Barang.class);
-        barangHelper helper = new barangHelper();
-        helper.addNewBarang(
-                barang.getNamaPengirim(),
-                barang.getNamaPenerima(),
-                barang.getNoHpPenerima(),
-                barang.getNoHpPengirim(),
-                barang.getAlamatTujuan(),
-                barang.getAlamatPengirim(),
-                barang.getTanggalMasuk(),
-                barang.getJenisPengiriman(),
-                barang.getStatusBarang(),
-                barang.getTotalHarga(),
-                barang.getTanggalDiterima(),
-                barang.getWaktuDiterima(),
-                barang.getNamaKurir()
-        );
+    public void putJson(String content) {
+    }
 
+    @POST
+    @Path("addPerjalanan")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addNewPerjalanan(String data) {
+        Gson gson = new Gson();
+        Perjalanan perjalanan = gson.fromJson(data, Perjalanan.class);
+        perjalananHelper helper = new perjalananHelper();
+        helper.addNewPerjalanan(
+                perjalanan.getIdBarang(),
+                perjalanan.getAsal(),
+                perjalanan.getTujuan()
+        );
         return Response
                 .status(200)
-                .entity(barang)
+                .entity(perjalanan)
                 .build();
     }
     
     @GET
-    @Path("cariBarang")
+    @Path("cariPerjalananBarang")
     @Produces(MediaType.APPLICATION_JSON)
     public Response Login(
-            @QueryParam("idBarang") Integer idBarang){
-        barangHelper helper = new barangHelper();
-        Barang hasil = helper.cariBarang(idBarang);
+            @QueryParam("idBarang") int idBarang){
+        perjalananHelper helper = new perjalananHelper();
+        Perjalanan hasil = helper.cariPerjalananBarang(idBarang);
 //        boolean hasil = helper.login(email, password);
         Gson gson = new Gson();
         

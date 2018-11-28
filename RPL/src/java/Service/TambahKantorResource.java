@@ -71,7 +71,7 @@ public class TambahKantorResource {
         Gson gson = new Gson();
         TambahKantor kantor = gson.fromJson(data, TambahKantor.class);
         tambahKantorHelper helper = new tambahKantorHelper();
-        helper.addNewKantor(kantor.getIdKantor(), kantor.getJenis(), kantor.getTableRouting());
+        helper.addNewKantor(kantor.getIdKantor(), kantor.getJenis(), kantor.getPosisi());
 
         return Response
                 .status(200)

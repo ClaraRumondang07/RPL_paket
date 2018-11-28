@@ -30,12 +30,12 @@ public class tambahKantorHelper {
     public void addNewKantor(
             String idKantor, 
             String jenis, 
-            String tableRouting
+            String posisi
             ) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
         Transaction transaction = session.beginTransaction();
-        TambahKantor kantor = new TambahKantor(idKantor, jenis, tableRouting);
+        TambahKantor kantor = new TambahKantor(idKantor, jenis, posisi);
         session.saveOrUpdate(kantor);
         transaction.commit();
         session.close();

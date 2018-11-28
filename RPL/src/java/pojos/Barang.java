@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 26, 2018 5:34:51 PM by Hibernate Tools 4.3.1
+// Generated 28-Nov-2018 10:40:36 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,12 +24,11 @@ public class Barang  implements java.io.Serializable {
      private Date tanggalDiterima;
      private String waktuDiterima;
      private String namaKurir;
-     private String tableRouting;
 
     public Barang() {
     }
 
-    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, String waktuDiterima, String namaKurir, String tableRouting) {
+    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, String waktuDiterima, String namaKurir) {
        this.namaPengirim = namaPengirim;
        this.namaPenerima = namaPenerima;
        this.noHpPenerima = noHpPenerima;
@@ -43,7 +42,6 @@ public class Barang  implements java.io.Serializable {
        this.tanggalDiterima = tanggalDiterima;
        this.waktuDiterima = waktuDiterima;
        this.namaKurir = namaKurir;
-       this.tableRouting = tableRouting;
     }
    
     public Integer getIdBarang() {
@@ -143,13 +141,6 @@ public class Barang  implements java.io.Serializable {
     
     public void setNamaKurir(String namaKurir) {
         this.namaKurir = namaKurir;
-    }
-    public String getTableRouting() {
-        return this.tableRouting;
-    }
-    
-    public void setTableRouting(String tableRouting) {
-        this.tableRouting = tableRouting;
     }
 
 

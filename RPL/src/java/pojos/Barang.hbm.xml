@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 26, 2018 5:34:54 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 28-Nov-2018 10:40:37 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojos.Barang" table="barang" catalog="db165314024" optimistic-lock="version">
         <id name="idBarang" type="java.lang.Integer">
@@ -46,9 +46,6 @@
         </property>
         <property name="namaKurir" type="string">
             <column name="namaKurir" length="50" not-null="true" />
-        </property>
-        <property name="tableRouting" type="string">
-            <column name="tableRouting" length="128" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

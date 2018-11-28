@@ -6,59 +6,48 @@
 package helper;
 
 import java.util.Date;
-import pojos.Barang;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import pojos.Perjalanan;
 import util.NewHibernateUtil;
+
 /**
  *
- * @author clara
+ * @author willy
  */
-public class barangHelper {
-    public List<Barang> bacaSemuaBarang() {
-        List<Barang> list = null;
+public class perjalananHelper {
+    public List<Perjalanan> bacaSemuaPerjalanan() {
+        List<Perjalanan> list = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Query q = session.createQuery("from Barang b");
+        Query q = session.createQuery("from Perjalanan b");
         list = q.list();
         session.close();
         return list;
     }
     
-    public void addNewBarang(
-            String namaPengirim, 
-            String namaPenerima, 
-            String noHpPenerima, 
-            String noHpPengirim, 
-            String alamatTujuan, 
-            String alamatPengirim, 
-            Date tanggalMasuk, 
-            String jenisPengiriman, 
-            String statusBarang, 
-            Integer totalHarga, 
-            Date tanggalDiterima, 
-            String waktuDiterima, 
-            String namaKurir
-            
+    public void addNewPerjalanan(
+            int idBarang, 
+            String asal, 
+            String tujuan
             ) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
         Transaction transaction = session.beginTransaction();
-        Barang barang = new Barang(namaPengirim, namaPenerima, noHpPenerima, noHpPengirim, alamatTujuan, alamatPengirim, tanggalMasuk, jenisPengiriman, statusBarang, totalHarga, tanggalDiterima, waktuDiterima, namaKurir);
-        session.saveOrUpdate(barang);
+        Perjalanan perjalanan = new Perjalanan(idBarang, asal, tujuan);
+        session.saveOrUpdate(perjalanan);
         transaction.commit();
         session.close();
     }
     
-    
-    public Barang cariBarang(Integer idBarang) {
+    public Perjalanan cariPerjalananBarang(int idBarang) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        String query = "from Barang u where u.idBarang=:idBarang";
+        String query = "from Perjalanan u where u.idBarang=:idBarang";
         Query q = session.createQuery(query);
         q.setParameter("idBarang", idBarang);
-        List<Barang> list = q.list();
+        List<Perjalanan> list = q.list();
         tx.commit();
         session.close();
         if (list.size() > 0) {
@@ -67,4 +56,5 @@ public class barangHelper {
             return null;
         }
     }
+    
 }

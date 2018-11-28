@@ -1,5 +1,5 @@
 package pojos;
-// Generated Nov 26, 2018 5:34:51 PM by Hibernate Tools 4.3.1
+// Generated 28-Nov-2018 10:40:36 by Hibernate Tools 4.3.1
 
 
 
@@ -11,7 +11,7 @@ public class TambahKantor  implements java.io.Serializable {
 
      private String idKantor;
      private String jenis;
-     private String tableRouting;
+     private String posisi;
 
     public TambahKantor() {
     }
@@ -20,10 +20,10 @@ public class TambahKantor  implements java.io.Serializable {
     public TambahKantor(String idKantor) {
         this.idKantor = idKantor;
     }
-    public TambahKantor(String idKantor, String jenis, String tableRouting) {
+    public TambahKantor(String idKantor, String jenis, String posisi) {
        this.idKantor = idKantor;
        this.jenis = jenis;
-       this.tableRouting = tableRouting;
+       this.posisi = posisi;
     }
    
     public String getIdKantor() {
@@ -40,12 +40,12 @@ public class TambahKantor  implements java.io.Serializable {
     public void setJenis(String jenis) {
         this.jenis = jenis;
     }
-    public String getTableRouting() {
-        return this.tableRouting;
+    public String getPosisi() {
+        return this.posisi;
     }
     
-    public void setTableRouting(String tableRouting) {
-        this.tableRouting = tableRouting;
+    public void setPosisi(String posisi) {
+        this.posisi = posisi;
     }
 
 
