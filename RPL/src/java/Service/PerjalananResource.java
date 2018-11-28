@@ -76,8 +76,8 @@ public class PerjalananResource {
         perjalananHelper helper = new perjalananHelper();
         helper.addNewPerjalanan(
                 perjalanan.getIdBarang(),
-                perjalanan.getAsal(),
-                perjalanan.getTujuan(),
+                perjalanan.getIdAsal(),
+                perjalanan.getIdTujuan(),
                 perjalanan.getWaktuDiterima(),
                 perjalanan.getTanggalDiterima(),
                 perjalanan.getNamaPenerima()
@@ -94,7 +94,7 @@ public class PerjalananResource {
     public Response Login(
             @QueryParam("idBarang") int idBarang){
         perjalananHelper helper = new perjalananHelper();
-        Perjalanan hasil = helper.cariPerjalananBarang(idBarang);
+        List hasil = helper.cariPerjalananBarang(idBarang);
 //        boolean hasil = helper.login(email, password);
         Gson gson = new Gson();
         

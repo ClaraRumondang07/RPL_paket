@@ -1,5 +1,5 @@
 package pojos;
-// Generated 29-Nov-2018 03:14:22 by Hibernate Tools 4.3.1
+// Generated 29-Nov-2018 04:16:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,8 +12,8 @@ public class Perjalanan  implements java.io.Serializable {
 
      private Integer idPerjalanan;
      private int idBarang;
-     private String asal;
-     private String tujuan;
+     private String idAsal;
+     private String idTujuan;
      private String waktuDiterima;
      private Date tanggalDiterima;
      private String namaPenerima;
@@ -22,17 +22,17 @@ public class Perjalanan  implements java.io.Serializable {
     }
 
 	
-    public Perjalanan(int idBarang, String asal, String tujuan, String waktuDiterima, Date tanggalDiterima) {
+    public Perjalanan(int idBarang, String idAsal, String idTujuan, String waktuDiterima, Date tanggalDiterima) {
         this.idBarang = idBarang;
-        this.asal = asal;
-        this.tujuan = tujuan;
+        this.idAsal = idAsal;
+        this.idTujuan = idTujuan;
         this.waktuDiterima = waktuDiterima;
         this.tanggalDiterima = tanggalDiterima;
     }
-    public Perjalanan(int idBarang, String asal, String tujuan, String waktuDiterima, Date tanggalDiterima, String namaPenerima) {
+    public Perjalanan(int idBarang, String idAsal, String idTujuan, String waktuDiterima, Date tanggalDiterima, String namaPenerima) {
        this.idBarang = idBarang;
-       this.asal = asal;
-       this.tujuan = tujuan;
+       this.idAsal = idAsal;
+       this.idTujuan = idTujuan;
        this.waktuDiterima = waktuDiterima;
        this.tanggalDiterima = tanggalDiterima;
        this.namaPenerima = namaPenerima;
@@ -52,19 +52,19 @@ public class Perjalanan  implements java.io.Serializable {
     public void setIdBarang(int idBarang) {
         this.idBarang = idBarang;
     }
-    public String getAsal() {
-        return this.asal;
+    public String getIdAsal() {
+        return this.idAsal;
     }
     
-    public void setAsal(String asal) {
-        this.asal = asal;
+    public void setIdAsal(String idAsal) {
+        this.idAsal = idAsal;
     }
-    public String getTujuan() {
-        return this.tujuan;
+    public String getIdTujuan() {
+        return this.idTujuan;
     }
     
-    public void setTujuan(String tujuan) {
-        this.tujuan = tujuan;
+    public void setIdTujuan(String idTujuan) {
+        this.idTujuan = idTujuan;
     }
     public String getWaktuDiterima() {
         return this.waktuDiterima;

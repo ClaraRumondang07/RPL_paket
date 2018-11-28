@@ -44,7 +44,7 @@ public class perjalananHelper {
         session.close();
     }
     
-    public Perjalanan cariPerjalananBarang(int idBarang) {
+    public List<Perjalanan> cariPerjalananBarang(int idBarang) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         String query = "from Perjalanan u where u.idBarang=:idBarang";
@@ -54,7 +54,7 @@ public class perjalananHelper {
         tx.commit();
         session.close();
         if (list.size() > 0) {
-            return list.get(0);
+            return list;
         } else {
             return null;
         }

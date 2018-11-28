@@ -34,18 +34,13 @@ public class barangHelper {
             String alamatTujuan, 
             String alamatPengirim, 
             Date tanggalMasuk, 
-            String jenisPengiriman, 
-            String statusBarang, 
-            Integer totalHarga, 
-            Date tanggalDiterima, 
-            String waktuDiterima, 
-            String namaKurir
-            
+            String jenisPengiriman,
+            int totalHarga
             ) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         
         Transaction transaction = session.beginTransaction();
-        Barang barang = new Barang(namaPengirim, namaPenerima, noHpPenerima, noHpPengirim, alamatTujuan, alamatPengirim, tanggalMasuk, jenisPengiriman, statusBarang, totalHarga, tanggalDiterima, waktuDiterima, namaKurir);
+        Barang barang = new Barang(namaPengirim, namaPenerima, noHpPenerima, noHpPengirim, alamatTujuan, alamatPengirim, tanggalMasuk, jenisPengiriman, totalHarga);
         session.saveOrUpdate(barang);
         transaction.commit();
         session.close();
@@ -66,5 +61,9 @@ public class barangHelper {
         } else {
             return null;
         }
+    }
+    
+    public void updateBarang(Integer idBarang){
+       
     }
 }

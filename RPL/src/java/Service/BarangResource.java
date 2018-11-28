@@ -82,11 +82,7 @@ public class BarangResource {
                 barang.getAlamatPengirim(),
                 barang.getTanggalMasuk(),
                 barang.getJenisPengiriman(),
-                barang.getStatusBarang(),
-                barang.getTotalHarga(),
-                barang.getTanggalDiterima(),
-                barang.getWaktuDiterima(),
-                barang.getNamaKurir()
+                barang.getTotalHarga()
         );
 
         return Response
