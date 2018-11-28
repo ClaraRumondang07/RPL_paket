@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2018 12:11:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="db165314024" name="pojos.Barang" optimistic-lock="version" table="barang">
+    <id name="idBarang" type="java.lang.Integer">
+      <column name="idBarang"/>
+      <generator class="identity"/>
+    </id>
+    <property name="namaPengirim" type="string">
+      <column length="50" name="namaPengirim"/>
+    </property>
+    <property name="namaPenerima" type="string">
+      <column length="50" name="namaPenerima"/>
+    </property>
+    <property name="noHpPenerima" type="string">
+      <column length="12" name="noHpPenerima"/>
+    </property>
+    <property name="noHpPengirim" type="string">
+      <column length="12" name="noHpPengirim"/>
+    </property>
+    <property name="alamatTujuan" type="string">
+      <column length="50" name="alamatTujuan"/>
+    </property>
+    <property name="alamatPengirim" type="string">
+      <column length="50" name="alamatPengirim"/>
+    </property>
+    <property name="tanggalMasuk" type="date">
+      <column length="10" name="tanggalMasuk"/>
+    </property>
+    <property name="jenisPengiriman" type="string">
+      <column length="20" name="jenisPengiriman"/>
+    </property>
+    <property name="statusBarang" type="string">
+      <column length="20" name="statusBarang"/>
+    </property>
+    <property name="totalHarga" type="java.lang.Integer">
+      <column name="totalHarga"/>
+    </property>
+    <property name="tanggalDiterima" type="date">
+      <column length="10" name="tanggalDiterima"/>
+    </property>
+    <property name="waktuDiterima" type="time">
+      <column length="8" name="waktuDiterima"/>
+    </property>
+    <property name="namaKurir" type="string">
+      <column length="50" name="namaKurir"/>
+    </property>
+  </class>
+</hibernate-mapping>
