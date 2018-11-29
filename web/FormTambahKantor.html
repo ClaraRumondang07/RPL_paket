@@ -218,20 +218,13 @@ and open the template in the editor.
                         <div>
                             <select name="jenis" id="jenis">
                                 <option label="--Silakan Pilih--"></option>
-                                <option value="Kilat">Kilat</option>
-                                <option value="Regular">Regular</option>                                
+                                <option value="Gudang">Gudang</option>
+                                <option value="Cabang">Cabang</option>                                
                             </select>
                         </div><br>
                         <div class ="form-group">
-                            <label for="tableRouting">Table Routing</label><br>
-                        </div>
-                        <div>
-                            <select name="tableRouting" id="tableRouting">
-                                <option label="--Silakan Pilih--"></option>
-                                <option value="Gudang">Gudang</option>
-                                <option value="Cabang A">Kantor Cabang A</option>
-                                <option value="Cabang B">Kantor Cabang B</option>                                
-                            </select>
+                            <label for="posisi">Lokasi</label><br>
+                            <input type="text" placeholder="Enter Lokasi Kantor" id="posisi" required/>
                         </div><br><br>
                         <div class="clearfix">
                             <button id="update" type="submit" class="signup">SIMPAN</button>
@@ -248,7 +241,7 @@ and open the template in the editor.
                 var json = {
                     "idKantor": form.idKantor.value,
                     "jenis": form.jenis.value,
-                    "tableRouting": form.tableRouting.value,
+                    "posisi": form.posisi.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
                 var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";

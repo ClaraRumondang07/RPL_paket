@@ -29,7 +29,7 @@ and open the template in the editor.
             nav {
                 float: left;
                 width: 30%;
-                height: 1050px;
+                height: 700px;
                 font-family: trebuchet ms;
                 background: white;
                 padding: 20px;
@@ -43,7 +43,7 @@ and open the template in the editor.
                 padding: 20px;
                 width: 70%;
                 background-color: white;
-                height: 1050px;                 
+                height: 700px;                 
                 font-family: trebuchet ms;
                 background-image: url("sky.png");
                 background-repeat: no-repeat;
@@ -198,79 +198,38 @@ and open the template in the editor.
 
         <section id="register" class="">            
             <nav>
-                <h3>Spesifikasi Paket</h3>
+                <h3>Update Status Pengiriman</h3>
                 <!--<p>Form Input Status</p>-->                
             </nav>
 
             <article>
-                <h3 style="text-align: center;"><b><u>FORM DAFTAR BARANG</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                <h3 style="text-align: center;"><b><u>FORM UPDATE STATUS</u></b></h3>
+                <form action="" id="registerForm" onsubmit="return updateTableBarang(this); return updateTablePerjalanan(this)" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
-                            <label for="idBarang">ID BARANG</label><br>
+                            <label for="idBarang">ID BARANG*</label><br>
                             <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
+                            <button type="button" onclick="loadDoc()" id="btn">Cari</button><!--<br><br>-->
+                            <p id="output3"></p>
                         </div><br><br>
                         <div class="form-group">
-                            <label for="namaPengirim">Nama Pengirim</label><br>
-                            <input type="text" placeholder="Enter Nama Pengirim" id="namaPengirim" required/>
+                            <label for="asal">Asal Paket</label><br>
+                            <input type="text" placeholder="Enter Asal Paket" id="asal" required/>
                         </div><br>
                         <div class="form-group">
-                            <label for="noHpPengirim">No. Telepon Pengirim</label><br>
-                            <input type="text" placeholder="Enter No. Telepon Pengirim" id="noHpPengirim" required/>
+                            <label for="tujuan">Tujuan Paket</label><br>
+                            <input type="text" placeholder="Enter Tujuan Paket" id="tujuan" required/>
                         </div><br>
-                        <div class="form-group">
-                            <label for="alamatPengirim">Alamat Pengirim</label><br>
-                            <input type="text" placeholder="Enter Alamat Pengirim" id="alamatPengirim" required/>
-                        </div><br><br>
-                        <div class="form-group">
-                            <label for="namaPenerima">Nama Penerima</label><br>
-                            <input type="text" placeholder="Enter Nama Penerima" id="namaPenerima" required/>
-                        </div><br>
-                        <div class="form-group">
-                            <label for="noHpPenerima">No. Telepon Penerima</label><br>
-                            <input type="text" placeholder="Enter No. Telepon Penerima" id="noHpPenerima" required/>
-                        </div><br>                        
-                        <div class="form-group">
-                            <label for="alamatTujuan">Alamat Penerima</label><br>
-                            <input type="text" placeholder="Enter Alamat Penerima" id="alamatTujuan" required/>
-                        </div><br><br>                        
-                        <div class="form-group">
-                            <label for="asal">Lokasi Asal</label><br>
-                            <input type="text" placeholder="Enter Lokasi Asal" id="asal" required/>
-                        </div><br>
-                        <div class="form-group">
-                            <label for="tujuan">Lokasi Tujuan</label><br>
-                            <input type="text" placeholder="Enter Tujuan" id="tujuan" required/>
-                        </div><br>                        
                         <div class ="form-group">
-                            <label for="tanggalMasuk">Tanggal Masuk</label><br>
-                            <input type="date" placeholder="Enter Tanggal Diterima" id="tanggalMasuk" required/>
+                            <label for="waktuDiterima">Waktu Diterima</label><br>
+                            <input type="time" placeholder="Enter Waktu Diterima" id="waktuDiterima" required/>
+                        </div><br>                          
+                        <div class ="form-group">
+                            <label for="tanggalDiterima">Tanggal Diterima</label><br>
+                            <input type="date" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required/>
                         </div><br>
-                        <div class="form-group">
-                            <label for="jenisPengiriman">Jenis Pengiriman</label><br>
-                            <!--<input type="text" placeholder="Enter Jenis Pengiriman" id="jenisPengiriman" required/>-->
-                        </div>
-                        <div>
-                            <select name="jenisPengiriman" id="jenisPengiriman">
-                                <option label="--Silakan Pilih--"></option>
-                                <option value="Regular">Regular</option>
-                                <option value="Kilat">Kilat</option>                                
-                            </select>
-                        </div><br>
-                        <div class="form-group">
-                            <label for="starusBarang">Status Barang</label><br>
-                            <input type="text" placeholder="--Status Barang--" id="starusBarang" required disabled=""/>
-                        </div><br>
-<!--                        <div class="form-group">
-                            <label for="namaKurir">Nama Kurir</label><br>
-                            <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required disabled=""/>
-                        </div><br>-->
-                        <div class="form-group">
-                            <label for="totalHarga">Total Harga</label><br>
-                            <input type="text" placeholder="Enter Total Harga" id="totalHarga" required disabled=""/>
-                        </div><br><br>
                         <div class="clearfix">
-                            <button id="save" type="submit" class="signup">SIMPAN</button>
+                            <button id="update" type="submit" class="signup">UPDATE</button>
                             <button id="cancel" type="reset">BATAL</button>
                         </div><br><br>
                     </div>
@@ -281,48 +240,53 @@ and open the template in the editor.
         </section>
 
         <script>
-            function simpanTableBarang(form) {
+            function updateTableBarang(form) {
                 var json = {
-                    "idBarang": form.idBarang.value,
-                    "namaPengirim": form.namaPengirim.value,
-                    "noHpPengirim": form.noHpPengirim.value,
-                    "alamatPengirim": form.alamaPengirim.value,
-                    "namaPenerima": form.namaPenerima.value,
-                    "noHpPenerima": form.noHpPenerima.value,
-                    "alamatPenerima": form.alamatPenerima.value,
-                    "tanggalMasuk": form.tanggalMasuk.value,
-                    "jenisPengiriman": form.jenisPengiriman.value,
-                    "statusBarang": form.statusBarang.value,
-                    "totalHarga": form.totalHarga.value,
+                    "tanggalDiterima": form.tanggalDiterima.value,
+                    "waktuDiterima": form.waktuDiterima.value,
                 };
-                var html = JSON.stringify(json, 0,  100);
+                var html = JSON.stringify(json, 0, 100);
                 var url = "http://202.94.83.190:8080/RPL/webresources/barang/addBarang";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
-                
+
                 alert(html);
                 document.getElementById("output1").innerHTML = html;
                 return false;
             }
-            
-            function simpanTablePerjalanan(form) {
+
+            function updateTablePerjalanan(form) {
                 var json = {
-                    "idBarang": form.idBarang.value,
                     "asal": form.asal.value,
                     "tujuan": form.tujuan.value,
                 };
-                var html = JSON.stringify(json, 0,  100);
+                var html = JSON.stringify(json, 0, 100);
                 var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
-                
+
                 alert(html);
                 document.getElementById("output2").innerHTML = html;
                 return false;
+            }
+
+            function loadDoc() {
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", url, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("output3").innerHTML = this.responseText;
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("asal").value = myObj.asal;
+                        document.getElementById("tujuan").value = myObj.tujuan;
+                    }
+                }
             }
         </script>
 
