@@ -283,7 +283,6 @@ and open the template in the editor.
         <script>
             function simpanTableBarang(form) {
                 var json = {
-                    "idBarang": form.idBarang.value,
                     "namaPengirim": form.namaPengirim.value,
                     "noHpPengirim": form.noHpPengirim.value,
                     "alamatPengirim": form.alamaPengirim.value,
@@ -292,7 +291,6 @@ and open the template in the editor.
                     "alamatPenerima": form.alamatPenerima.value,
                     "tanggalMasuk": form.tanggalMasuk.value,
                     "jenisPengiriman": form.jenisPengiriman.value,
-                    "statusBarang": form.statusBarang.value,
                     "totalHarga": form.totalHarga.value,
                 };
                 var html = JSON.stringify(json, 0,  100);
@@ -309,7 +307,6 @@ and open the template in the editor.
             
             function simpanTablePerjalanan(form) {
                 var json = {
-                    "idBarang": form.idBarang.value,
                     "asal": form.asal.value,
                     "tujuan": form.tujuan.value,
                 };
