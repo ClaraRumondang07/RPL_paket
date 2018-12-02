@@ -219,7 +219,7 @@ and open the template in the editor.
                             <select name="jenis" id="jenis">
                                 <option label="--Silakan Pilih--"></option>
                                 <option value="Gudang">Gudang</option>
-                                <option value="Cabang">Cabang</option>                                
+                                <option value="Kantor Cabang">Cabang</option>                                
                             </select>
                         </div><br>
                         <div class ="form-group">
@@ -244,14 +244,15 @@ and open the template in the editor.
                     "posisi": form.posisi.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";
+//                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";
+                var Url = "http://localhost:8084/RPL/webresources/TambahKantor/addKantor";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false)
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
 
                 alert(html);
-                document.getElementById("output").innerHTML = html;
+                document.getElementById("output").innerHTML = "Pendaftaran Kantor Berhasil";
                 return false;
             }
         </script>

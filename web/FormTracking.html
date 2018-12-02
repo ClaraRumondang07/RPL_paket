@@ -230,13 +230,15 @@ and open the template in the editor.
 
         <script>
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/rsku/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
+//                var url = "http://202.94.83.190:8080/rsku/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
+                var url = "http://localhost:8084/RPL/webresources/Perjalanan/cariPerjalananBarang?idBarang="+ idBarang.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("output").innerHTML = this.responseText;
+//                        document.getElementById("output").innerHTML = this.responseText;
                         var myObj = JSON.parse(this.responseText);
                         if (myObj !== null) {
+//                            document.getElementById(loopingList(this.responseText)).v
                             loopingList(this.responseText);
                         } else {
                             alert("ID barang tidak ditemukan silakan coba lagi");
@@ -249,13 +251,16 @@ and open the template in the editor.
                 function loopingList(response) {
                     var size = JSON.parse(response);
                     var i;
-                    var out = "<table border='1' class='table-wrapper-scroll-y'><thead><tr><th>ID Perjalanan</th><th>ID Barang</th><th>Asal</th><th>Tujuan</th></tr></thead>";
+                    var out = "<table border='1' class='table-wrapper-scroll-y'><thead><tr><th>ID Perjalanan</th><th>ID Barang</th><th>Asal</th><th>Tujuan</th><th>Waktu Terima</th><th>Tanggal Terima</th><th>Nama Penerima</th></tr></thead>";
 
                     for (i = 0; i < size.length; i++) {
                         out += "<tbody><tr><td>" + size[i].idPerjalanan +
                                 "</td><td>" + size[i].idBarang +
-                                "</td><td>" + size[i].asal +
-                                "</td><td>" + size[i].tujuan +
+                                "</td><td>" + size[i].idAsal +
+                                "</td><td>" + size[i].idTujuan +
+                                "</td><td>" + size[i].waktuDiterima +
+                                "</td><td>" + size[i].tanggalDiterima +
+                                "</td><td>" + size[i].namaPenerima +
                                 "</td></tr></tbody>";
                     }
                     out += "</table>";

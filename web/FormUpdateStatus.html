@@ -259,12 +259,14 @@ and open the template in the editor.
 
             function updateTablePerjalanan(form) {
                 var json = {
-//                    "idPerjalan": form.
+//                    "idPerjalan": form.idBarang.value,
                     "idAsal": form.idAsal.value,
                     "idTujuan": form.idTujuan.value,
+                    "waktuDiterima": form.waktuDiterima.value,
+                    "tanggalDiterima": form.tanggalDiterima.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
+                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");

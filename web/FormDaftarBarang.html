@@ -204,12 +204,12 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM DAFTAR BARANG</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                <form action="" id="registerForm" onsubmit="return simpanTableBarang(this); simpanTablePerjalanan(this)" method="POST">
                     <div class="container"><br>
-                        <div class ="form-group">
-                            <label for="idBarang">ID BARANG</label><br>
-                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
-                        </div><br><br>
+                        <!--                        <div class ="form-group">
+                                                    <label for="idBarang">ID BARANG</label><br>
+                                                    <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
+                                                </div><br><br>-->
                         <div class="form-group">
                             <label for="namaPengirim">Nama Pengirim</label><br>
                             <input type="text" placeholder="Enter Nama Pengirim" id="namaPengirim" required/>
@@ -257,17 +257,17 @@ and open the template in the editor.
                                 <option value="Kilat">Kilat</option>                                
                             </select>
                         </div><br>
-<!--                        <div class="form-group">
-                            <label for="starusBarang">Status Barang</label><br>
-                            <input type="text" placeholder="--Status Barang--" id="starusBarang" required disabled=""/>
-                        </div><br>-->
-<!--                        <div class="form-group">
-                            <label for="namaKurir">Nama Kurir</label><br>
-                            <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required disabled=""/>
-                        </div><br>-->
+                        <!--                        <div class="form-group">
+                                                    <label for="starusBarang">Status Barang</label><br>
+                                                    <input type="text" placeholder="--Status Barang--" id="starusBarang" required disabled=""/>
+                                                </div><br>-->
+                        <!--                        <div class="form-group">
+                                                    <label for="namaKurir">Nama Kurir</label><br>
+                                                    <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required disabled=""/>
+                                                </div><br>-->
                         <div class="form-group">
                             <label for="totalHarga">Total Harga</label><br>
-                            <input type="text" placeholder="Enter Total Harga" id="totalHarga" required disabled=""/>
+                            <input type="text" placeholder="Enter Total Harga" id="totalHarga" required/>
                         </div><br><br>
                         <div class="clearfix">
                             <button id="save" type="submit" class="signup">SIMPAN</button>
@@ -293,32 +293,36 @@ and open the template in the editor.
                     "jenisPengiriman": form.jenisPengiriman.value,
                     "totalHarga": form.totalHarga.value,
                 };
-                var html = JSON.stringify(json, 0,  100);
-                var url = "http://202.94.83.190:8080/RPL/webresources/barang/addBarang";
+                var html = JSON.stringify(json, 0, 100);
+//                var url = "http://202.94.83.190:8080/RPL/webresources/barang/addBarang";
+                var url = "http://localhost:8084/RPL/webresources/barang/addBarang";
+
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
-                
+
                 alert(html);
-                document.getElementById("output1").innerHTML = html;
+//                document.getElementById("output1").innerHTML = html;
                 return false;
             }
-            
+
             function simpanTablePerjalanan(form) {
                 var json = {
-                    "asal": form.asal.value,
-                    "tujuan": form.tujuan.value,
+//                    "idBarang" : "idBarang",
+                    "idAsal": form.asal.value,
+                    "idTujuan": form.tujuan.value,
                 };
-                var html = JSON.stringify(json, 0,  100);
-                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
+                var html = JSON.stringify(json, 0, 100);
+//                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
+                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
-                
+
                 alert(html);
-                document.getElementById("output2").innerHTML = html;
+//                document.getElementById("output2").innerHTML = html;
                 return false;
             }
         </script>
