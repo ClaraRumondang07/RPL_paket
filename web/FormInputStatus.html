@@ -204,7 +204,7 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return inputTableBarang(this); inputTablePerjalanan(this)" method="POST">
+                <form action="" id="registerForm" onsubmit="return gabungan(this);" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
                             <label for="idBarang">ID BARANG*</label><br>
@@ -252,6 +252,10 @@ and open the template in the editor.
         </section>
 
         <script>
+            function gabungan(form){
+                inputTableBarang(form);
+                inputTablePerjalanan(form);
+            }
             function inputTableBarang(form) {
                 var json = {
                     "tanggalDiterima": form.tanggalDiterima.value,
@@ -261,7 +265,7 @@ and open the template in the editor.
                     "statusBarang": form.statusBarang.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var url = "http://localhost:8084/RPL/webresources/barang/addBarang";
+                var url = "http://localhost:8084/RPL/webresources/barang/update";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");

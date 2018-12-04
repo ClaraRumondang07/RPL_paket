@@ -209,7 +209,7 @@ and open the template in the editor.
                         <div class ="form-group">
                             <label for="idBarang">ID BARANG*</label><br>
                             <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
-                            <button type="button" onclick="loadDoc()" id="btn">Cari</button><!--<br><br>-->
+                            <!--<button type="button" onclick="loadDoc()" id="btn">Cari</button><br><br>-->
                             <!--<p id="Ditemukan"></p>-->
                         </div><br><br>
                         <div class="form-group">
@@ -285,9 +285,14 @@ and open the template in the editor.
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
 //                        document.getElementById("Ditemukan").innerHTML = this.responseText;
-                        var myObj = JSON.parse(this.responseText);
-                        document.getElementById("idAsal").value = myObj.idAsal;
-                        document.getElementById("idTujuan").value = myObj.idTujuan;
+                        for (var i = 0; i < max; i++) {
+                            var myObj = JSON.parse(this.responseText);
+                            document.getElementById("idAsal").value = myObj[i].idAsal;
+                            document.getElementById("idTujuan").value = myObj[i].idTujuan;
+                        }
+//                        var myObj = JSON.parse(this.responseText);
+//                        document.getElementById("idAsal").value = myObj[0].idAsal;
+//                        document.getElementById("idTujuan").value = myObj[0].idTujuan;
                     }
                 }
             }
