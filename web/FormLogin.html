@@ -204,18 +204,18 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>LOGIN</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                <form action="" id="registerForm" method="POST">
                     <div class="container"><br>
                         <div class="form-group">
                             <label for="id">ID</label><br>
-                            <input type="text" placeholder="Enter ID" id="id" required/>
+                            <input type="text" placeholder="Enter ID" id="idU"/>
                         </div><br>
                         <div class="form-group">
                             <label for="password">Password</label><br>
-                            <input type="password" placeholder="Enter Password" id="password" required/>
+                            <input type="password" placeholder="Enter Password" id="password"/>
                         </div><br>
                         <div class="clearfix">
-                            <button id="save" type="button">LOGIN</button>
+                            <button type="button" class="button" onclick="doLogin()">LOGIN</button>
                         </div><br><br>
                     </div>
                 </form>
@@ -224,16 +224,19 @@ and open the template in the editor.
 
         <script>
             function doLogin() {
-                var ID = id.value;
-                var pw = password.value;
+//                var ID = id.value;
+//                var pw = password.value;
 
-                var url = "http://202.94.83.190:8080/RPL_Paket/webresources/user/login?id="+ID+"&password="+pw;
+                var url = "http://localhost:8084/RPL/webresources/user/login?id="+idU.value+"&password="+password.value;
+//                var url = "http://localhost:8084/RPL/webresources/user/login?id=admin&password=admin";
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
                             var myWin = window.open("AfterLogin.html", "_self");
+//                            window.open("AfterLogin.html", "_self");
+//                            opener("AfterLogin.html", "_self");
                         } else {
                             alert("Login Gagal");
                         }

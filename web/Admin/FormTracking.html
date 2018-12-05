@@ -184,6 +184,17 @@ and open the template in the editor.
                 display: block;
             }
         </style>        
+        <!--CSS TABLE-->
+        <style>
+            .table-wrapper-scroll-y {
+                display: block;
+                max-height: 450px;                
+                overflow-y: auto;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                width: 100%;
+                height: 100%;
+            }
+        </style>        
     </head>
     <body>
         <header>
@@ -193,68 +204,70 @@ and open the template in the editor.
         <div class="topnav">
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
-            <a href="FormTracking.html">Tracking Paket</a>
+            <a href="FormTracking.html" class="active">Tracking Paket</a>
         </div>
 
         <section id="register" class="">            
             <nav>
-                <h3>Tambah Kantor</h3>
-                <p>Silakan isi data kantor</p>
-                <!--                <p>Cukup dengan mengisikan NIK yang telah terdaftar</p>-->
+                <h3>Silakan isi ID Barang guna lakukan tracking</h3>
+                <!--<p>Form Input Status</p>-->                
             </nav>
 
             <article>
-                <h3 style="text-align: center;"><b><u>FORM TAMBAH KANTOR</u></b></h3>
+                <h3 style="text-align: center;"><b><u>FORM TRACKING</u></b></h3>
                 <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
                     <div class="container"><br>
-                        <div class ="form-group">
-                            <label for="idKantor">ID Kantor</label><br>
-                            <input type="text" placeholder="Enter ID Kantor" id="idKantor" required/>
+                        <div class="form-group">
+                            <label for="idBarang">ID BARANG</label><br>
+                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
+                            <button type="button" onclick="loadDoc()" id="btn">CARI</button><!--<br><br>-->
+                            <p id="demo"></p>
                         </div><br>
-                        <div class ="form-group">
-                            <label for="jenis">Jenis</label><br>
-                            <!--<input type="text" placeholder="Enter Jenis Kantor" id="jenis" required/>-->
-                        </div>
-                        <div>
-                            <select name="jenis" id="jenis">
-                                <option label="--Silakan Pilih--"></option>
-                                <option value="Gudang">Gudang</option>
-                                <option value="Kantor Cabang">Cabang</option>                                
-                            </select>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="posisi">Lokasi</label><br>
-                            <input type="text" placeholder="Enter Lokasi Kantor" id="posisi" required/>
-                        </div><br><br>
-                        <div class="clearfix">
-                            <button id="update" type="submit" class="signup">SIMPAN</button>
-                            <button id="cancel" type="reset">BATAL</button>
-                        </div><br><br>                        
                     </div>
                     <a href="AfterLogin.html" style="text-decoration: none; font-size: 12px; float: right;"><--- BACK</a>
-                    <p id="output"></p>
                 </form>
             </article>
         </section>
 
         <script>
-            function make_json(form) {
-                var json = {
-                    "idKantor": form.idKantor.value,
-                    "jenis": form.jenis.value,
-                    "posisi": form.posisi.value,
-                };
-                var html = JSON.stringify(json, 0, 100);
-//                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";
-                var Url = "http://localhost:8084/RPL/webresources/TambahKantor/addKantor";
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false)
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
+            function loadDoc() {
+//                var url = "http://202.94.83.190:8080/rsku/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
+                var url = "http://localhost:8084/RPL/webresources/Perjalanan/cariPerjalananBarang?idBarang="+ idBarang.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+//                        document.getElementById("output").innerHTML = this.responseText;
+                        var myObj = JSON.parse(this.responseText);
+                        if (myObj !== null) {
+//                            document.getElementById(loopingList(this.responseText)).v
+                            loopingList(this.responseText);
+                        } else {
+                            alert("ID barang tidak ditemukan silakan coba lagi");
+                        }
+                    }
+                }
+                xhttp.open("GET", url, true);
+                xhttp.send();
 
-                alert(html);
-                document.getElementById("output").innerHTML = "Pendaftaran Kantor Berhasil";
-                return false;
+                function loopingList(response) {
+                    var size = JSON.parse(response);
+                    var i;
+                    var out = "<table border='1' class='table-wrapper-scroll-y'><thead><tr><th>ID Perjalanan</th><th>ID Barang</th><th>Asal</th><th>Tujuan</th><th>Waktu Terima</th><th>Tanggal Terima</th><th>Nama Penerima</th></tr></thead>";
+
+                    for (i = 0; i < size.length; i++) {
+                        out += "<tbody><tr><td>" + size[i].idPerjalanan +
+                                "</td><td>" + size[i].idBarang +
+                                "</td><td>" + size[i].idAsal +
+                                "</td><td>" + size[i].idTujuan +
+                                "</td><td>" + size[i].waktuDiterima +
+                                "</td><td>" + size[i].tanggalDiterima +
+                                "</td><td>" + size[i].namaPenerima +
+                                "</td></tr></tbody>";
+                    }
+                    out += "</table>";
+                    document.getElementById("demo").innerHTML = out;
+//                        ;
+                }
             }
         </script>
 
@@ -264,4 +277,3 @@ and open the template in the editor.
 
     </body>
 </html>
-
