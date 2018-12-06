@@ -295,8 +295,8 @@ and open the template in the editor.
                     "totalHarga": form.totalHarga.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-//                var url = "http://202.94.83.190:8080/RPL/webresources/barang/addBarang";
-                var url = "http://localhost:8084/RPL/webresources/barang/addBarang";
+                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/addBarang";
+//                var url = "http://localhost:8084/RPL/webresources/barang/addBarang";
 
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
@@ -315,8 +315,8 @@ and open the template in the editor.
                     "idTujuan": form.tujuan.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-//                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
-                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
+                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
+//                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");

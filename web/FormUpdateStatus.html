@@ -267,7 +267,8 @@ and open the template in the editor.
                     "tanggalDiterima": form.tanggalDiterima.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
+//                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
+                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
@@ -280,7 +281,7 @@ and open the template in the editor.
 
             function loadDoc() {
 //                var url = "http://localhost:8084/RPL/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
-                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/cariBarang?idBarang=" + idBarang.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();

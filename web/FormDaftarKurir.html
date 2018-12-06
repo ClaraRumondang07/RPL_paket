@@ -276,8 +276,8 @@ and open the template in the editor.
                     "noTelp": form.noTelp.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-//                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/kurir/addKurir";
-                var Url = "http://localhost:8084/RPL/webresources/kurir/addKurir";
+                var Url = "http://202.94.83.190:8080/RPL_paket/webresources/kurir/addKurir";
+//                var Url = "http://localhost:8084/RPL/webresources/kurir/addKurir";
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', Url, false)
                 xhr.setRequestHeader("Content-type", "application/json");
