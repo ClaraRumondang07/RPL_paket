@@ -204,7 +204,7 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM DAFTAR BARANG</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return simpanTableBarang(this); simpanTablePerjalanan(this)" method="POST">
+                <form action="" id="registerForm" onsubmit="return gabungan(this);" method="POST">
                     <div class="container"><br>
                         <!--                        <div class ="form-group">
                                                     <label for="idBarang">ID BARANG</label><br>
@@ -274,7 +274,7 @@ and open the template in the editor.
                             <button id="cancel" type="reset">BATAL</button>
                         </div><br><br>
                     </div>
-                    <a href="AfterLogin.html" style="text-decoration: none; font-size: 12px; float: right;"><--- BACK</a>
+                    <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
                     <p id="output1"></p>
                     <p id="output2"></p>
                 </form>
@@ -282,6 +282,11 @@ and open the template in the editor.
         </section>
 
         <script>
+            function gabungan(form){
+                simpanTableBarang(form);
+                simpanTablePerjalanan(form);
+            }
+            
             function simpanTableBarang(form) {
                 var json = {
                     "namaPengirim": form.namaPengirim.value,

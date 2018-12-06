@@ -192,126 +192,100 @@ and open the template in the editor.
 
         <div class="topnav">
             <a href="FormLogin.html">Home</a>
-            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
+            <a href="FormDaftarKurir.html" class="active">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
         </div>
 
         <section id="register" class="">            
             <nav>
-                <h3>Input Status Pengiriman</h3>
-                <!--<p>Form Input Status</p>-->                
+                <h3>Ingin mendaftar menjadi kurir?</h3>
+                <p>Silakan isikan data diri Anda</p>
+                <!--                <p>Cukup dengan mengisikan NIK yang telah terdaftar</p>-->
             </nav>
 
             <article>
-                <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return gabungan(this);" method="POST">
+                <h3 style="text-align: center;"><b><u>FORM PENDAFTARAN KURIR</u></b></h3>
+                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
-                            <label for="idBarang">ID BARANG*</label><br>
-                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
-                            <button type="button" onclick="loadDoc()" id="btn">Cari</button><!--<br><br>-->
-                            <!--<p id="output3"></p>-->
-                        </div><br><br>                        
-                        <div class ="form-group">
-                            <label for="tanggalDiterima">Tanggal Diterima</label><br>
-                            <input type="text" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required/>
+                            <label for="nik">NIK</label><br>
+                            <input type="text" placeholder="Enter NIK" id="nik" required/>
                         </div><br>
                         <div class ="form-group">
-                            <label for="waktuDiterima">Waktu Diterima</label><br>
-                            <input type="time" placeholder="Enter Waktu Diterima" id="waktuDiterima" required/>
-                        </div><br>                        
-                        <div class="form-group">
-                            <label for="namaPenerima">Nama Penerima</label><br>
-                            <input type="text" placeholder="Enter Nama Penerima" id="namaPenerima" required/>
+                            <label for="nama">Nama</label><br>
+                            <input type="text" placeholder="Enter Nama" id="nama" required/>
                         </div><br>
-                        <div class="form-group">
-                            <label for="namaKurir">Nama Kurir</label><br>
-                            <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required/>
-                            <!--<input type="text" placeholder="--Nama Kurir--" id="namaKurir" required disabled=""/>-->
+                        <div class ="form-group">
+                            <label for="alamat">Alamat Tinggal</label><br>
+                            <input type="text" placeholder="Enter Alamat" id="alamat" required/>
                         </div><br>
-                        <div class="form-group">
-                            <label for="statusBarang">Status Barang</label><br>
-                            <input type="text" placeholder="Enter Status Barang" id="statusBarang" required/>
+                        <div class ="form-group">
+                            <label for="agama">Agama</label><br>
+                            <!--<input type="text" placeholder="Enter Agama" id="agama" required/>-->
                         </div>
-                        <!--                        <div>
-                                                    <select name="statusBarang" id="statusBarang">
-                                                        <option label="--Silakan Pilih--"></option>
-                                                        <option value="On Proses">On Proses</option>
-                                                        <option value="Selesai">Selesai</option>
-                                                    </select>
-                                                </div>--><br><br>
+                        <div>
+                            <select name="agama" id="agama">
+                                <option label="--Silakan Pilih--"></option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Budha">Budha</option>
+                                <option value="Konghu Chu">Konghu Chu</option>
+                                <option value="Yahudi">Yahudi</option>                                
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="tanggalLahir">Tanggal Lahir</label><br>
+                            <input type="date" placeholder="Enter Tanggal Lahir" id="tanggalLahir" required/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="status">Status</label><br>                            
+                        </div>
+                        <div>
+                            <select name="status" id="status">
+                                <option label="--Silakan Pilih--"></option>
+                                <option value="Nikah">Nikah</option>
+                                <option value="Belum nikah">Belum nikah</option>                                
+                            </select>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="noTelp">No. Telepon</label><br>
+                            <input type="text" placeholder="Enter No. Telp" id="noTelp" required/>
+                        </div><br><br>                        
                         <div class="clearfix">
-                            <button id="update" type="submit" class="signup">UPDATE</button>
                             <button id="cancel" type="reset">BATAL</button>
+                            <button id="save" type="submit" class="signup">DAFTAR</button>
                         </div><br><br>
                     </div>
-                    <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
-                    <p id="output1"></p>
-                    <p id="output2"></p>
+                    <p id="output"></p>
                 </form>
             </article>
         </section>
 
         <script>
-            function gabungan(form) {
-                inputTableBarang(form);
-                inputTablePerjalanan(form);
-            }
-            function inputTableBarang(form) {
+            function make_json(form) {
                 var json = {
-                    "tanggalDiterima": form.tanggalDiterima.value,
-                    "waktuDiterima": form.waktuDiterima.value,
-                    "namaPenerima": form.namaPenerima.value,
-                    "namaKurir": form.namaKurir.value,
-                    "statusBarang": form.statusBarang.value,
+                    "nik": form.nik.value,
+                    "nama": form.nama.value,
+                    "alamat": form.alamat.value,
+                    "agama": form.agama.value,
+                    "tanggalLahir": form.tanggalLahir.value,
+                    "status": form.status.value,
+                    "noTelp": form.noTelp.value,
                 };
                 var html = JSON.stringify(json, 0, 100);
-//                var url = "http://localhost:8084/RPL/webresources/barang/update";
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/update";
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", url, false);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                xhttp.send(html);
+                var Url = "http://202.94.83.190:8080/RPL_paket/webresources/kurir/addKurir";
+//                var Url = "http://localhost:8084/RPL/webresources/kurir/addKurir";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false)
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
 
                 alert(html);
-                document.getElementById("output1").innerHTML = html;
+                document.getElementById("output").innerHTML = html;
                 return false;
-            }
-
-            function inputTablePerjalanan(form) {
-                var json = {
-                    "tanggalDiterima": form.tanggalDiterima.value,
-                    "waktuDiterima": form.waktuDiterima.value,
-                };
-                var html = JSON.stringify(json, 0, 100);
-//                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", url, false);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                xhttp.send(html);
-
-                alert(html);
-                document.getElementById("output2").innerHTML = html;
-                return false;
-            }
-
-            function loadDoc() {
-//                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/cariBarang?idBarang=" + idBarang.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", url, true);
-                xhttp.send();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-//                        document.getElementById("output3").innerHTML = this.responseText;
-                        var myObj = JSON.parse(this.responseText);
-                        document.getElementById("tanggalDiterima").value = myObj.tanggalDiterima;
-                        document.getElementById("waktuDiterima").value = myObj.waktuDiterima;
-                        document.getElementById("namaKurir").value = myObj.namaKurir;
-                        document.getElementById("statusBarang").value = myObj.statusBarang;
-                    }
-                }
             }
         </script>
 
@@ -321,3 +295,4 @@ and open the template in the editor.
 
     </body>
 </html>
+
