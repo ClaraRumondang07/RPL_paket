@@ -1,5 +1,5 @@
 package pojos;
-// Generated 29-Nov-2018 04:16:50 by Hibernate Tools 4.3.1
+// Generated Dec 8, 2018 12:00:43 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Barang  implements java.io.Serializable {
 
 
-     private Integer idBarang;
+     private int idBarang;
      private String namaPengirim;
      private String namaPenerima;
      private String noHpPenerima;
@@ -29,7 +29,8 @@ public class Barang  implements java.io.Serializable {
     }
 
 	
-    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, int totalHarga) {
+    public Barang(int idBarang, String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, int totalHarga) {
+        this.idBarang = idBarang;
         this.namaPengirim = namaPengirim;
         this.namaPenerima = namaPenerima;
         this.noHpPenerima = noHpPenerima;
@@ -40,7 +41,8 @@ public class Barang  implements java.io.Serializable {
         this.jenisPengiriman = jenisPengiriman;
         this.totalHarga = totalHarga;
     }
-    public Barang(String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, String waktuDiterima, String namaKurir) {
+    public Barang(int idBarang, String namaPengirim, String namaPenerima, String noHpPenerima, String noHpPengirim, String alamatTujuan, String alamatPengirim, Date tanggalMasuk, String jenisPengiriman, String statusBarang, int totalHarga, Date tanggalDiterima, String waktuDiterima, String namaKurir) {
+       this.idBarang = idBarang;
        this.namaPengirim = namaPengirim;
        this.namaPenerima = namaPenerima;
        this.noHpPenerima = noHpPenerima;
@@ -56,11 +58,11 @@ public class Barang  implements java.io.Serializable {
        this.namaKurir = namaKurir;
     }
    
-    public Integer getIdBarang() {
+    public int getIdBarang() {
         return this.idBarang;
     }
     
-    public void setIdBarang(Integer idBarang) {
+    public void setIdBarang(int idBarang) {
         this.idBarang = idBarang;
     }
     public String getNamaPengirim() {

@@ -74,6 +74,7 @@ public class BarangResource {
         Barang barang = gson.fromJson(data, Barang.class);
         barangHelper helper = new barangHelper();
         helper.addNewBarang(
+                barang.getIdBarang(),
                 barang.getNamaPengirim(),
                 barang.getNamaPenerima(),
                 barang.getNoHpPenerima(),
@@ -116,4 +117,19 @@ public class BarangResource {
                 .header("Access-Preflight-Maxage", "2")
                 .build();
     }
+    
+    @PUT
+    @Path("update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response Update(String data){
+        Gson gson = new Gson();
+        Barang barang = gson.fromJson(data, Barang.class);
+       
+        barangHelper helper = new barangHelper();
+        helper.updateBarang(barang);
+       
+        return Response.status(200).entity(gson.toJson(barang)).build();
+    }
+
 }

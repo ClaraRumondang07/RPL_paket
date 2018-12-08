@@ -46,10 +46,10 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://202.94.83.190:3306/db165314024?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">165314024</property>
     <property name="hibernate.connection.password">165314024</property>
+    <mapping resource="pojos/Kurir.hbm.xml"/>
     <mapping resource="pojos/User.hbm.xml"/>
-    <mapping resource="pojos/Barang.hbm.xml"/>
     <mapping resource="pojos/Perjalanan.hbm.xml"/>
     <mapping resource="pojos/Kantor.hbm.xml"/>
-    <mapping resource="pojos/Kurir.hbm.xml"/>
+    <mapping resource="pojos/Barang.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29-Nov-2018 04:16:50 by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 8, 2018 12:00:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojos.Barang" table="barang" catalog="db165314024" optimistic-lock="version">
-        <id name="idBarang" type="java.lang.Integer">
+        <id name="idBarang" type="int">
             <column name="idBarang" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <property name="namaPengirim" type="string">
             <column name="namaPengirim" length="50" not-null="true" />
