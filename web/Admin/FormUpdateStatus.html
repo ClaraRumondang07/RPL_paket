@@ -194,6 +194,7 @@ and open the template in the editor.
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
@@ -207,7 +208,7 @@ and open the template in the editor.
                 <form action="" id="registerForm" onsubmit="return updateTablePerjalanan(this)" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
-                            <label for="idBarang">ID BARANG*</label><br>
+                            <label for="idBarang">ID BARANG</label><br>
                             <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
                             <!--<button type="button" onclick="loadDoc()" id="btn">Cari</button><br><br>-->
                             <!--<p id="Ditemukan"></p>-->
@@ -260,27 +261,31 @@ and open the template in the editor.
 
             function updateTablePerjalanan(form) {
                 var json = {
-//                    "idPerjalan": form.idBarang.value,
+                    "idBarang": form.idBarang.value,
                     "idAsal": form.idAsal.value,
                     "idTujuan": form.idTujuan.value,
                     "waktuDiterima": form.waktuDiterima.value,
                     "tanggalDiterima": form.tanggalDiterima.value,
+                    "namaPenerima": "-"
                 };
                 var html = JSON.stringify(json, 0, 100);
 //                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
+//                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
+//                var url = "http://202.94.83.190:8080/RPL_PAKET_NEW/webresources/Perjalanan/addPerjalanan";
+                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
 
-                alert(html);
-                document.getElementById("output2").innerHTML = html;
+//                alert(html);
+                alert("Update status barang berhasil dilakukan");
+//                document.getElementById("output2").innerHTML = html;
                 return false;
             }
 
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
 //                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);

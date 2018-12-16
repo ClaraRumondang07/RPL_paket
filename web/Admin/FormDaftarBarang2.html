@@ -29,7 +29,7 @@ and open the template in the editor.
             nav {
                 float: left;
                 width: 30%;
-                height: 700px;
+                height: 1050px;
                 font-family: trebuchet ms;
                 background: white;
                 padding: 20px;
@@ -43,7 +43,7 @@ and open the template in the editor.
                 padding: 20px;
                 width: 70%;
                 background-color: white;
-                height: 700px;                 
+                height: 1050px;                 
                 font-family: trebuchet ms;
                 background-image: url("sky.png");
                 background-repeat: no-repeat;
@@ -185,7 +185,7 @@ and open the template in the editor.
             }
         </style>        
     </head>
-    <body>
+    <body onload="loadDoc()">
         <header>
             <h1>Project RPL Paket</h1>
         </header>
@@ -194,42 +194,37 @@ and open the template in the editor.
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
             <nav>
-                <h3>Tambah Kantor</h3>
-                <p>Silakan isi data kantor</p>
-                <!--                <p>Cukup dengan mengisikan NIK yang telah terdaftar</p>-->
+                <h3>Spesifikasi Paket</h3>
+                <!--<p>Form Input Status</p>-->                
             </nav>
 
             <article>
-                <h3 style="text-align: center;"><b><u>FORM TAMBAH KANTOR</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
+                <h3 style="text-align: center;"><b><u>FORM DAFTAR BARANG</u></b></h3>
+                <!--<form action="" id="registerForm" onsubmit="return !!(simpanTableBarang(this) & simpanTablePerjalanan(this));" method="POST">-->
+                <form action="" id="registerForm" onsubmit="return simpanTablePerjalanan(this);" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
-                            <label for="idKantor">ID Kantor</label><br>
-                            <input type="text" placeholder="Enter ID Kantor" id="idKantor" required/>
+                            <label for="idBarang">ID BARANG</label><br>
+                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required disabled=""/>
+                        </div><br>                                                
+                        <div class="form-group">
+                            <label for="idAsal">Lokasi Asal</label><br>
+                            <input type="text" placeholder="Enter Lokasi Asal" id="idAsal" required />
                         </div><br>
-                        <div class ="form-group">
-                            <label for="jenis">Jenis</label><br>
-                            <!--<input type="text" placeholder="Enter Jenis Kantor" id="jenis" required/>-->
-                        </div>
-                        <div>
-                            <select name="jenis" id="jenis">
-                                <option label="--Silakan Pilih--"></option>
-                                <option value="Gudang">Gudang</option>
-                                <option value="Kantor Cabang">Cabang</option>                                
-                            </select>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="posisi">Lokasi</label><br>
-                            <input type="text" placeholder="Enter Lokasi Kantor" id="posisi" required/>
-                        </div><br><br>
+                        <div class="form-group">
+                            <label for="idTujuan">Lokasi Tujuan</label><br>
+                            <input type="text" placeholder="Enter Tujuan" id="idTujuan" required />
+                        </div><br>                        
+                        <br><br>
                         <div class="clearfix">
-                            <button id="update" type="submit" class="signup">SIMPAN</button>
+                            <button id="save" type="submit" class="signup">SIMPAN</button>
                             <button id="cancel" type="reset">BATAL</button>
-                        </div><br><br>                        
+                        </div><br><br>
                     </div>
                     <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
                     <p id="output"></p>
@@ -238,25 +233,62 @@ and open the template in the editor.
         </section>
 
         <script>
-            function make_json(form) {
+            function simpanTablePerjalanan(form) {
                 var json = {
-                    "idKantor": form.idKantor.value,
-                    "jenis": form.jenis.value,
-                    "posisi": form.posisi.value,
+                    "idBarang": form.idBarang.value,
+                    "idAsal": form.idAsal.value,
+                    "idTujuan": form.idTujuan.value
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";
-//                var Url = "http://localhost:8084/RPL/webresources/TambahKantor/addKantor";
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false);
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
+//                var url = "http://202.94.83.190:8080/RPL_PAKET_NEW/webresources/Perjalanan/addPerjalanan";
+                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan2";
+//                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", url, false);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(html);
 
-                alert(html);
-                alert("Pendaftaran Kantor Berhasil");
-                document.getElementById("output").innerHTML = html;
-                document.getElementById("output").innerHTML = "Pendaftaran Kantor Berhasil";
+                alert("Barang telah terdaftar");
+//                alert(html);
+//                document.getElementById("output2").innerHTML = html;
                 return false;
+            }
+            
+            function loadDoc() {
+//                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + getCookie("idBarang");
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", url, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("idBarang").value = myObj.idBarang;
+                    }
+                }
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function checkCookie() {
+                var username = getCookie("idBarang");
+                if (username != "") {
+                    document.getElementById("output").value = username;
+                }
             }
         </script>
 
@@ -266,4 +298,3 @@ and open the template in the editor.
 
     </body>
 </html>
-

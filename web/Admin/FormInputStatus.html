@@ -194,6 +194,7 @@ and open the template in the editor.
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
@@ -204,7 +205,7 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return gabungan(this);" method="POST">
+                <form action="" id="registerForm" onsubmit="return simpanTableBarang(this);" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
                             <label for="idBarang">ID BARANG*</label><br>
@@ -253,17 +254,13 @@ and open the template in the editor.
         </section>
 
         <script>
-            function gabungan(form) {
-                inputTableBarang(form);
-                inputTablePerjalanan(form);
-            }
             function inputTableBarang(form) {
                 var json = {
                     "tanggalDiterima": form.tanggalDiterima.value,
                     "waktuDiterima": form.waktuDiterima.value,
                     "namaPenerima": form.namaPenerima.value,
                     "namaKurir": form.namaKurir.value,
-                    "statusBarang": form.statusBarang.value,
+                    "statusBarang": form.statusBarang.value
                 };
                 var html = JSON.stringify(json, 0, 100);
 //                var url = "http://localhost:8084/RPL/webresources/barang/update";
@@ -271,6 +268,7 @@ and open the template in the editor.
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
+                openPage(form.tanggalDiterima.value);
                 xhttp.send(html);
 
                 alert(html);
@@ -278,27 +276,39 @@ and open the template in the editor.
                 return false;
             }
 
-            function inputTablePerjalanan(form) {
-                var json = {
-                    "tanggalDiterima": form.tanggalDiterima.value,
-                    "waktuDiterima": form.waktuDiterima.value,
-                };
-                var html = JSON.stringify(json, 0, 100);
-//                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", url, false);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                xhttp.send(html);
-
-                alert(html);
-                document.getElementById("output2").innerHTML = html;
-                return false;
+            function openPage(tanggalDiterima) {
+                var myMindow = window.open("FormInputStatus2.html", "_self");
+                setCookie("tanggalDiterima", tanggalDiterima, 1);
             }
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+//            function inputTablePerjalanan(form) {
+//                var json = {
+//                    "tanggalDiterima": form.tanggalDiterima.value,
+//                    "waktuDiterima": form.waktuDiterima.value
+//                };
+//                var html = JSON.stringify(json, 0, 100);
+////                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
+//                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
+//                var xhttp = new XMLHttpRequest();
+//                xhttp.open("POST", url, false);
+//                xhttp.setRequestHeader("Content-type", "application/json");
+//                xhttp.send(html);
+//
+//                alert(html);
+//                document.getElementById("output2").innerHTML = html;
+//                return false;
+//            }
 
             function loadDoc() {
 //                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
@@ -306,10 +316,10 @@ and open the template in the editor.
                     if (this.readyState == 4 && this.status == 200) {
 //                        document.getElementById("output3").innerHTML = this.responseText;
                         var myObj = JSON.parse(this.responseText);
-                        document.getElementById("tanggalDiterima").value = myObj.tanggalDiterima;
-                        document.getElementById("waktuDiterima").value = myObj.waktuDiterima;
-                        document.getElementById("namaKurir").value = myObj.namaKurir;
-                        document.getElementById("statusBarang").value = myObj.statusBarang;
+                        document.getElementById("tanggalDiterima").value = myObj[0].tanggalDiterima;
+//                        document.getElementById("waktuDiterima").value = myObj[0].waktuDiterima;
+//                        document.getElementById("namaKurir").value = myObj[0].namaKurir;
+//                        document.getElementById("statusBarang").value = myObj[0].statusBarang;
                     }
                 }
             }

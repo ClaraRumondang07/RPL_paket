@@ -260,11 +260,11 @@ and open the template in the editor.
 
             function updateTablePerjalanan(form) {
                 var json = {
-//                    "idPerjalan": form.idBarang.value,
+                    "idPerjalan": form.idBarang.value,
                     "idAsal": form.idAsal.value,
                     "idTujuan": form.idTujuan.value,
                     "waktuDiterima": form.waktuDiterima.value,
-                    "tanggalDiterima": form.tanggalDiterima.value,
+                    "tanggalDiterima": form.tanggalDiterima.value
                 };
                 var html = JSON.stringify(json, 0, 100);
 //                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
@@ -274,8 +274,9 @@ and open the template in the editor.
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
 
-                alert(html);
-                document.getElementById("output2").innerHTML = html;
+//                alert(html);
+                alert("Update status barang berhasil dilakukan");
+//                document.getElementById("output2").innerHTML = html;
                 return false;
             }
 
@@ -288,14 +289,14 @@ and open the template in the editor.
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
 //                        document.getElementById("Ditemukan").innerHTML = this.responseText;
-                        for (var i = 0; i < max; i++) {
-                            var myObj = JSON.parse(this.responseText);
-                            document.getElementById("idAsal").value = myObj[i].idAsal;
-                            document.getElementById("idTujuan").value = myObj[i].idTujuan;
-                        }
-//                        var myObj = JSON.parse(this.responseText);
-//                        document.getElementById("idAsal").value = myObj[0].idAsal;
-//                        document.getElementById("idTujuan").value = myObj[0].idTujuan;
+//                        for (var i = 0; i < max; i++) {
+//                            var myObj = JSON.parse(this.responseText);
+//                            document.getElementById("idAsal").value = myObj[i].idAsal;
+//                            document.getElementById("idTujuan").value = myObj[i].idTujuan;
+//                        }
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("idAsal").value = myObj[0].idAsal;
+                        document.getElementById("idTujuan").value = myObj[0].idTujuan;
                     }
                 }
             }

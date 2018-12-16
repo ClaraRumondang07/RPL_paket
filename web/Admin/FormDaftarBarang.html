@@ -194,6 +194,7 @@ and open the template in the editor.
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
@@ -204,12 +205,13 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM DAFTAR BARANG</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return gabungan(this);" method="POST">
+                <!--<form action="" id="registerForm" onsubmit="return !!(simpanTableBarang(this) & simpanTablePerjalanan(this));" method="POST">-->
+                <form action="" id="registerForm" onsubmit="return simpanTableBarang(this);" method="POST">
                     <div class="container"><br>
-                        <!--                        <div class ="form-group">
-                                                    <label for="idBarang">ID BARANG</label><br>
-                                                    <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
-                                                </div><br><br>-->
+                        <div class ="form-group">
+                            <label for="idBarang">ID BARANG</label><br>
+                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
+                        </div><br>
                         <div class="form-group">
                             <label for="namaPengirim">Nama Pengirim</label><br>
                             <input type="text" placeholder="Enter Nama Pengirim" id="namaPengirim" required/>
@@ -233,22 +235,13 @@ and open the template in the editor.
                         <div class="form-group">
                             <label for="alamatTujuan">Alamat Penerima</label><br>
                             <input type="text" placeholder="Enter Alamat Penerima" id="alamatTujuan" required/>
-                        </div><br><br>                        
-                        <div class="form-group">
-                            <label for="asal">Lokasi Asal</label><br>
-                            <input type="text" placeholder="Enter Lokasi Asal" id="asal" required/>
-                        </div><br>
-                        <div class="form-group">
-                            <label for="tujuan">Lokasi Tujuan</label><br>
-                            <input type="text" placeholder="Enter Tujuan" id="tujuan" required/>
-                        </div><br>                        
+                        </div><br><br>                       
                         <div class ="form-group">
                             <label for="tanggalMasuk">Tanggal Masuk</label><br>
                             <input type="date" placeholder="Enter Tanggal Diterima" id="tanggalMasuk" required/>
                         </div><br>
                         <div class="form-group">
                             <label for="jenisPengiriman">Jenis Pengiriman</label><br>
-                            <!--<input type="text" placeholder="Enter Jenis Pengiriman" id="jenisPengiriman" required/>-->
                         </div>
                         <div>
                             <select name="jenisPengiriman" id="jenisPengiriman">
@@ -257,14 +250,6 @@ and open the template in the editor.
                                 <option value="Kilat">Kilat</option>                                
                             </select>
                         </div><br>
-                        <!--                        <div class="form-group">
-                                                    <label for="starusBarang">Status Barang</label><br>
-                                                    <input type="text" placeholder="--Status Barang--" id="starusBarang" required disabled=""/>
-                                                </div><br>-->
-                        <!--                        <div class="form-group">
-                                                    <label for="namaKurir">Nama Kurir</label><br>
-                                                    <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required disabled=""/>
-                                                </div><br>-->
                         <div class="form-group">
                             <label for="totalHarga">Total Harga</label><br>
                             <input type="text" placeholder="Enter Total Harga" id="totalHarga" required/>
@@ -276,66 +261,57 @@ and open the template in the editor.
                     </div>
                     <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
                     <p id="output1"></p>
-                    <p id="output2"></p>
+                    <!--<p id="output2"></p>-->
                 </form>
             </article>
         </section>
 
         <script>
-            function gabungan(form){
-                simpanTableBarang(form);
-                simpanTablePerjalanan(form);
-            }
-            
             function simpanTableBarang(form) {
                 var json = {
+                    "idBarang": form.idBarang.value,
                     "namaPengirim": form.namaPengirim.value,
-                    "noHpPengirim": form.noHpPengirim.value,
-                    "alamatPengirim": form.alamaPengirim.value,
                     "namaPenerima": form.namaPenerima.value,
                     "noHpPenerima": form.noHpPenerima.value,
-                    "alamatPenerima": form.alamatPenerima.value,
+                    "noHpPengirim": form.noHpPengirim.value,
+                    "alamatTujuan": form.alamatTujuan.value,
+                    "alamatPengirim": form.alamatPengirim.value,                    
                     "tanggalMasuk": form.tanggalMasuk.value,
                     "jenisPengiriman": form.jenisPengiriman.value,
-                    "totalHarga": form.totalHarga.value,
+                    "totalHarga": form.totalHarga.value
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/addBarang";
+//                var url = "http://202.94.83.190:8080/RPL_PAKET_NEW/webresources/barang/addBarang";
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/addBarang";
 //                var url = "http://localhost:8084/RPL/webresources/barang/addBarang";
 
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
+                openTablePerjalanan(form.idBarang.value);
                 xhttp.send(html);
-
-                alert(html);
+                
+//                alert(html);
+                alert("Barang telah terdaftar");
 //                document.getElementById("output1").innerHTML = html;
                 return false;
             }
-
-            function simpanTablePerjalanan(form) {
-                var json = {
-//                    "idBarang" : "idBarang",
-                    "idAsal": form.asal.value,
-                    "idTujuan": form.tujuan.value,
-                };
-                var html = JSON.stringify(json, 0, 100);
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/addPerjalanan";
-//                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", url, false);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                xhttp.send(html);
-
-                alert(html);
-//                document.getElementById("output2").innerHTML = html;
-                return false;
+            
+            function openTablePerjalanan(idBarang){
+                var page = window.open("FormDaftarBarang2.html","_self");
+                setCookie("idBarang", idBarang, 1);
+            }
+            
+            function setCookie(cname, cvalue, exdays){
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             }
         </script>
 
         <footer>
             <p>PT. PROJECT RPL PAKET</p>
         </footer>
-
     </body>
 </html>

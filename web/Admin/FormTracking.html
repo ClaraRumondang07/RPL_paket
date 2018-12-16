@@ -205,6 +205,7 @@ and open the template in the editor.
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html" class="active">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
@@ -231,7 +232,9 @@ and open the template in the editor.
 
         <script>
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
+                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
+//                var url = "http://202.94.83.190:8080/Pencari_Domain3/webresources/domain/caridomain?domain=" + idBarang.value;
+//                var url = "http://202.94.83.190:8080/RPL_PAKET_NEW/webresources/Perjalanan/cariPerjalananBarang?idBarang=" + idBarang.value;
 //                var url = "http://localhost:8084/RPL/webresources/Perjalanan/cariPerjalananBarang?idBarang="+ idBarang.value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
@@ -255,7 +258,7 @@ and open the template in the editor.
                     var out = "<table border='1' class='table-wrapper-scroll-y'><thead><tr><th>ID Perjalanan</th><th>ID Barang</th><th>Asal</th><th>Tujuan</th><th>Waktu Terima</th><th>Tanggal Terima</th><th>Nama Penerima</th></tr></thead>";
 
                     for (i = 0; i < size.length; i++) {
-                        out += "<tbody><tr><td>" + size[i].idPerjalanan +
+                        out += "<tbody><tr><td>" +  size[i].idPerjalanan +
                                 "</td><td>" + size[i].idBarang +
                                 "</td><td>" + size[i].idAsal +
                                 "</td><td>" + size[i].idTujuan +

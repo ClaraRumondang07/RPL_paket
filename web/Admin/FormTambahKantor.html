@@ -194,6 +194,7 @@ and open the template in the editor.
             <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
@@ -227,12 +228,12 @@ and open the template in the editor.
                             <input type="text" placeholder="Enter Lokasi Kantor" id="posisi" required/>
                         </div><br><br>
                         <div class="clearfix">
-                            <button id="update" type="submit" class="signup">SIMPAN</button>
+                            <button id="save" type="submit" class="signup">SIMPAN</button>
                             <button id="cancel" type="reset">BATAL</button>
                         </div><br><br>                        
                     </div>
-                    <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
-                    <p id="output"></p>
+                    <p id="output"></p><br><br>
+                    <br><br><br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
                 </form>
             </article>
         </section>
@@ -242,18 +243,21 @@ and open the template in the editor.
                 var json = {
                     "idKantor": form.idKantor.value,
                     "jenis": form.jenis.value,
-                    "posisi": form.posisi.value,
+                    "posisi": form.posisi.value
                 };
                 var html = JSON.stringify(json, 0, 100);
-                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";
+                var Url = "http://202.94.83.190:8080/RPL/webresources/TambahKantor/addKantor";
+//                var Url = "http://202.94.83.190:8080/RPL_PAKET_NEW/webresources/TambahKantor/addKantor";
 //                var Url = "http://localhost:8084/RPL/webresources/TambahKantor/addKantor";
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false)
+                xhr.open("POST", Url, false);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.send(html);
 
-                alert(html);
-                document.getElementById("output").innerHTML = "Pendaftaran Kantor Berhasil";
+//                alert(html);
+                alert("Pendaftaran Kantor Berhasil");
+//                document.getElementById("output").innerHTML = html;
+//                document.getElementById("output").innerHTML = "Pendaftaran Kantor Berhasil";
                 return false;
             }
         </script>
