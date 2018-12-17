@@ -234,11 +234,12 @@ and open the template in the editor.
                     if (this.readyState == 4 && this.status == 200) {
                         var user = JSON.parse(this.responseText);
                         if (user !== null) {
+                            alert("Ada data");
                             var myWin = window.open("Admin/AfterLogin.html", "_self");
 //                            window.open("AfterLogin.html", "_self");
 //                            opener("AfterLogin.html", "_self");
                         } else {
-                            alert("Login Gagal");
+                            alert("Tidak ada data");
                         }
 
                         document.getElementById("demo").innerHTML = this.resposeText;
