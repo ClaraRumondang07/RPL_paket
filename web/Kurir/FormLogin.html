@@ -29,7 +29,7 @@ and open the template in the editor.
             nav {
                 float: left;
                 width: 30%;
-                height: 400px;
+                height: 700px;
                 font-family: trebuchet ms;
                 background: white;
                 padding: 20px;
@@ -43,7 +43,7 @@ and open the template in the editor.
                 padding: 20px;
                 width: 70%;
                 background-color: white;
-                height: 400px;                 
+                height: 700px;                 
                 font-family: trebuchet ms;
                 background-image: url("sky.png");
                 background-repeat: no-repeat;
@@ -191,23 +191,65 @@ and open the template in the editor.
         </header>
 
         <div class="topnav">
-            <a href="FormLogin.html">Home</a>
-            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
-            <a href="FormTracking.html">Tracking Paket</a>
+            <a href="FormLogin.html" class="active">Home</a>
+<!--            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
+            <a href="FormTracking.html">Tracking Paket</a>-->
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
-            <nav>              
+            <nav>
+                <br><h3>Anda telah login</h3>
+                <!--<p>Form Input Status</p>-->                
             </nav>
 
             <article>
-                <br><br><br><br><br><br><br>
-                <a href="AfterLoginKurir.html" style="text-decoration: none; font-size: 25px">Kurir</a><br><br><br><br>
-                <a href="AfterLoginPegawai.html" style="text-decoration: none; font-size: 25px">Pegawai</a><br><br><br>
+                <br><br><br><br><h3 style="text-align: center; font-size: 25px;"><b><u>SELAMAT DATANG</u></b></h3>
+                <br><br><a href="FormInputStatus.html" style="text-decoration: black; font-size: 20px;"><p style="text-align: center;">Menu</p></a>
+                <!--<br><a href="../FormLogin.html" style="text-decoration: black; font-size: 18px;"><p style="text-align: center;">Logout</p></a>-->
+<!--                <form action="" id="registerForm" method="POST">
+                    <div class="container"><br>
+                        <div class="form-group">
+                            <label for="id">ID</label><br>
+                            <input type="text" placeholder="Enter ID" id="idU"/>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="password">Password</label><br>
+                            <input type="password" placeholder="Enter Password" id="password"/>
+                        </div><br>
+                        <div class="clearfix">
+                            <button type="button" class="button" onclick="doLogin()">LOGIN</button>
+                        </div><br><br>
+                    </div>
+                </form>-->
             </article>
         </section>
 
         <script>
+            function doLogin() {
+//                var ID = id.value;
+//                var pw = password.value;
+
+//                var url = "http://localhost:8084/RPL/webresources/user/login?id="+idU.value+"&password="+password.value;
+                var url = "http://202.94.83.190:8080/RPL_paket/webresources/user/login?id="+idU.value+"&password="+password.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var user = JSON.parse(this.responseText);
+                        if (user !== null) {
+                            var myWin = window.open("AfterLogin.html", "_self");
+//                            window.open("AfterLogin.html", "_self");
+//                            opener("AfterLogin.html", "_self");
+                        } else {
+                            alert("Login Gagal");
+                        }
+
+                        document.getElementById("demo").innerHTML = this.resposeText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
         </script>
 
         <footer>

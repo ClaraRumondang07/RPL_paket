@@ -185,68 +185,136 @@ and open the template in the editor.
             }
         </style>        
     </head>
-    <body>
+    <body onload="loadDoc()">
         <header>
             <h1>Project RPL Paket</h1>
         </header>
 
         <div class="topnav">
-            <a href="FormLogin.html" class="active">Home</a>
+            <a href="FormLogin.html">Home</a>
             <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
             <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
         </div>
 
         <section id="register" class="">            
             <nav>
-                <h3>Silakan Melakukan Login</h3>
+                <h3>Input Status Pengiriman</h3>
                 <!--<p>Form Input Status</p>-->                
             </nav>
 
             <article>
-                <h3 style="text-align: center;"><b><u>LOGIN</u></b></h3>
-                <form action="" id="registerForm" method="POST">
+                <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
+                <form action="" id="registerForm" onsubmit="return inputTablePerjalanan(this);" method="POST">
                     <div class="container"><br>
+                        <div class ="form-group">
+                            <label for="idBarang">ID BARANG*</label><br>
+                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required disabled=""/>
+                            <!--<button type="button" onclick="loadDoc()" id="btn">Cari</button><br><br>-->
+                            <!--<p id="output3"></p>-->
+                        </div><br><br>                        
+                        <div class ="form-group">
+                            <label for="tanggalDiterima">Tanggal Diterima</label><br>
+                            <input type="text" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required disabled=""/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="waktuDiterima">Waktu Diterima</label><br>
+                            <input type="text" placeholder="Enter Waktu Diterima" id="waktuDiterima" required disabled=""/>
+                        </div><br>                        
                         <div class="form-group">
-                            <label for="id">ID</label><br>
-                            <input type="text" placeholder="Enter ID" id="idU"/>
+                            <label for="namaPenerima">Nama Penerima</label><br>
+                            <input type="text" placeholder="Enter Nama Penerima" id="namaPenerima" required/>
+                        </div><br>
+                        <!--<div class="form-group">
+                            <label for="namaKurir">Nama Kurir</label><br>
+                            <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required/>
+                            <input type="text" placeholder="--Nama Kurir--" id="namaKurir" required disabled=""/>
                         </div><br>
                         <div class="form-group">
-                            <label for="password">Password</label><br>
-                            <input type="password" placeholder="Enter Password" id="password"/>
-                        </div><br>
+                            <label for="statusBarang">Status Barang</label><br>
+                            <input type="text" placeholder="Enter Status Barang" id="statusBarang" required/>
+                        </div>-->
+                        <!--                        <div>
+                                                    <select name="statusBarang" id="statusBarang">
+                                                        <option label="--Silakan Pilih--"></option>
+                                                        <option value="On Proses">On Proses</option>
+                                                        <option value="Selesai">Selesai</option>
+                                                    </select>
+                                                </div>--><br><br>
                         <div class="clearfix">
-                            <button type="button" class="button" onclick="doLogin()">LOGIN</button>
+                            <button id="update" type="submit" class="signup">UPDATE</button>
+                            <button id="cancel" type="reset">BATAL</button>
                         </div><br><br>
                     </div>
+                    <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
+                    <p id="output1"></p>
+                    <p id="output2"></p>
+                    <!--<p id="output3"></p>-->
                 </form>
             </article>
         </section>
 
         <script>
-            function doLogin() {
-//                var ID = id.value;
-//                var pw = password.value;
-
-                var url = "http://202.94.83.190:8080/RPL/webresources/user/login?id="+idU.value+"&password="+password.value;
-//                var url = "http://202.94.83.190:8080/RPL_paket/webresources/user/login?id="+idU.value+"&password="+password.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var user = JSON.parse(this.responseText);
-                        if (user !== null) {
-                            alert("Ada data");
-                            var myWin = window.open("AfterLogin.html", "_self");
-//                            window.open("AfterLogin.html", "_self");
-//                            opener("AfterLogin.html", "_self");
-                        } else {
-                            alert("Tidak ada data");
-                        }
-
-                        document.getElementById("demo").innerHTML = this.resposeText;
-                    }
+            function inputTablePerjalanan(form) {
+                var json = {
+                    "idBarang": form.idBarang.value,
+                    "tanggalDiterima": form.tanggalDiterima.value,
+                    "waktuDiterima": form.waktuDiterima.value,
+                    "namaPenerima": form.namaPenerima.value
                 };
+                var html = JSON.stringify(json, 0, 100);
+                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan3";
+//                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan3";
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", url, false);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(html);
+
+//                alert(html);
+                alert("Data tersimpan");
+                document.getElementById("output2").innerHTML = html;
+                return false;
+            }
+
+            function loadDoc() {
+//                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + getCookie("idBarang1");
+                var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+//                        document.getElementById("output3").innerHTML = getCookie("idBarang1");
+                        var myObj = JSON.parse(this.responseText);
+//                        alert(myObj);
+                        document.getElementById("tanggalDiterima").value = myObj.tanggalDiterima;
+                        document.getElementById("waktuDiterima").value = myObj.waktuDiterima;
+                        document.getElementById("idBarang").value = myObj.idBarang;
+                    }
+                }
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function checkCookie() {
+                var username = getCookie("idBarang");
+                if (username != "") {
+                    document.getElementById("jadwal").value = username;
+                }
             }
         </script>
 

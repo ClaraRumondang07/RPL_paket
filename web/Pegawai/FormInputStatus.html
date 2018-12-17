@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>RPL Paket</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Krona+One|Sura" rel="stylesheet">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Style the header */
+            header {
+                font-family:'Krona One', sans-serif;
+                font-size: 30px; 
+                color: #00aaff;
+                background-color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+            /* Create two columns/boxes that floats next to each other */
+            nav {
+                float: left;
+                width: 30%;
+                height: 700px;
+                font-family: trebuchet ms;
+                background: white;
+                padding: 20px;
+                text-align: left;
+                background-repeat: no-repeat;
+                background-size: 400px;
+            }
+
+            article {
+                float: left;
+                padding: 20px;
+                width: 70%;
+                background-color: white;
+                height: 700px;                 
+                font-family: trebuchet ms;
+                background-image: url("sky.png");
+                background-repeat: no-repeat;
+                background-position: right;
+                background-size: 335px;
+            }
+
+            /* Clear floats after the columns */
+            section:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Style the footer */
+            footer {
+                background-color: white;
+                padding: 10px;
+                text-align: center;
+                font-family:palatino; 
+                font-size: 20px; 
+                color: darkmagenta;
+            }
+
+            /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+            @media (max-width: 600px) {
+                nav, article {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        </style>
+        <!--css menu-->
+        <style>
+            body {
+                margin: 0;
+                /*font-family: Arial, Helvetica, sans-serif;*/
+                font-family: trebuchet ms;
+            }
+
+            .topnav {
+                overflow: hidden;
+                background-color: #00bfff;
+            }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            .topnav a:hover {
+                background-color: white;
+                color: black;
+            }
+
+            .topnav a.active {
+                /*background-color: #4CAF50;*/
+                background-color: white;
+                color: black;
+            }
+        </style>
+        <!--css dropdown menu-->
+        <style>
+            /* Navbar container */
+            .navbar {
+                overflow: hidden;
+                background-color: #00bfff;
+                font-family: trebuchet ms;
+            }
+
+            /* Links inside the navbar */
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                font-family: trebuchet ms;
+                /*text-decoration: none;*/
+            }
+
+            /* The dropdown container */
+            .dropdown {
+                float: left;
+                overflow: hidden;
+            }
+
+            /* Dropdown button */
+            .dropdown .dropbtn {
+                font-size: 17px; 
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: #00bfff;
+                font-family: trebuchet ms; /* Important for vertical align on mobile phones */
+                margin: 0; /* Important for vertical align on mobile phones */
+            }
+
+            /* Add a white background color to navbar links on hover */
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                color: black;
+                background-color: white;
+            }
+
+            /* Dropdown content (hidden by default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #00bfff;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                background-color: white;
+            }
+
+            /* Add a blue background color to dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #99dfff;
+            }
+
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+        </style>        
+    </head>
+    <body>
+        <header>
+            <h1>Project RPL Paket</h1>
+        </header>
+
+        <div class="topnav">
+            <a href="FormLogin.html">Home</a>
+            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
+            <a href="FormTracking.html">Tracking Paket</a>
+            <a href="../FormLogin.html">Logout</a>
+        </div>
+
+        <section id="register" class="">            
+            <nav>
+                <h3>Input Status Pengiriman</h3>
+                <!--<p>Form Input Status</p>-->                
+            </nav>
+
+            <article>
+                <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
+                <form action="" id="registerForm" onsubmit="return inputTableBarang(this);">
+                    <div class="container"><br>
+                        <div class ="form-group">
+                            <label for="idBarang">ID BARANG*</label><br>
+                            <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
+                            <!--<button type="button" onclick="loadDoc()" id="btn">Cari</button><br><br>-->
+                            <!--<p id="output3"></p>-->
+                        </div><br><br>                        
+                        <div class ="form-group">
+                            <label for="tanggalDiterima">Tanggal Diterima</label><br>
+                            <input type="date" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required/>
+                        </div><br>
+                        <div class ="form-group">
+                            <label for="waktuDiterima">Waktu Diterima</label><br>
+                            <input type="text" placeholder="Enter Waktu Diterima" id="waktuDiterima" required/>
+                        </div><br>                        
+<!--                        <div class="form-group">
+                            <label for="namaPenerima">Nama Penerima</label><br>
+                            <input type="text" placeholder="Enter Nama Penerima" id="namaPenerima" required/>
+                        </div><br>-->
+                        <div class="form-group">
+                            <label for="namaKurir">Nama Kurir</label><br>
+                            <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required/>
+                            <!--<input type="text" placeholder="--Nama Kurir--" id="namaKurir" required disabled=""/>-->
+                        </div><br>
+                        <div class="form-group">
+                            <label for="statusBarang">Status Barang</label><br>
+                            <input type="text" placeholder="Enter Status Barang" id="statusBarang" required/>
+                        </div>
+                        <!--                        <div>
+                                                    <select name="statusBarang" id="statusBarang">
+                                                        <option label="--Silakan Pilih--"></option>
+                                                        <option value="On Proses">On Proses</option>
+                                                        <option value="Selesai">Selesai</option>
+                                                    </select>
+                                                </div>--><br><br>
+                        <div class="clearfix">
+                            <button id="update" type="submit" class="signup">UPDATE</button>
+                            <button id="cancel" type="reset">BATAL</button>
+                        </div><br><br>
+                    </div>
+                    <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a><br><br>
+                    <p id="output1"></p>
+                    <p id="output2"></p>
+                    <p id="output3"></p>
+                </form>
+            </article>
+        </section>
+
+        <script>
+            function inputTableBarang(form) {
+                var json = {
+                    "idBarang": form.idBarang.value,
+                    "tanggalDiterima": form.tanggalDiterima.value,
+                    "waktuDiterima": form.waktuDiterima.value,
+                    "namaKurir": form.namaKurir.value,
+                    "statusBarang": form.statusBarang.value
+                };
+                var html = JSON.stringify(json, 0, 100);
+//                var url = "http://localhost:8084/RPL/webresources/barang/update";
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/update";
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("PUT", url, false);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                openPage(form.idBarang.value);
+                xhttp.send(html);
+
+//                alert(html);
+                alert("Data tersimpan");
+//                document.getElementById("output1").innerHTML = html;
+                return false;
+            }
+
+            function openPage(idBarang) {
+//                alert(idBarang);
+                var myMindow = window.open("FormInputStatus2.html", "_self");
+                setCookie("idBarang1", idBarang, 1);
+            }
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+//            function inputTablePerjalanan(form) {
+//                var json = {
+//                    "tanggalDiterima": form.tanggalDiterima.value,
+//                    "waktuDiterima": form.waktuDiterima.value
+//                };
+//                var html = JSON.stringify(json, 0, 100);
+////                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
+//                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
+//                var xhttp = new XMLHttpRequest();
+//                xhttp.open("POST", url, false);
+//                xhttp.setRequestHeader("Content-type", "application/json");
+//                xhttp.send(html);
+//
+//                alert(html);
+//                document.getElementById("output2").innerHTML = html;
+//                return false;
+//            }
+
+//            function loadDoc() {
+////                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+//                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+//                var xhttp = new XMLHttpRequest();
+//                xhttp.open("GET", url, true);
+//                xhttp.send();
+//                xhttp.onreadystatechange = function () {
+//                    if (this.readyState == 4 && this.status == 200) {
+////                        document.getElementById("output3").innerHTML = this.responseText;
+//                        var myObj = JSON.parse(this.responseText);
+//                        document.getElementById("tanggalDiterima").value = myObj[0].tanggalDiterima;
+////                        document.getElementById("waktuDiterima").value = myObj[0].waktuDiterima;
+////                        document.getElementById("namaKurir").value = myObj[0].namaKurir;
+////                        document.getElementById("statusBarang").value = myObj[0].statusBarang;
+//                    }
+//                }
+//            }
+        </script>
+
+        <footer>
+            <p>PT. PROJECT RPL PAKET</p>
+        </footer>
+
+    </body>
+</html>
