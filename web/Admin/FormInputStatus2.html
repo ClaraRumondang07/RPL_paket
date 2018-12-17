@@ -205,7 +205,7 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return simpanTableBarang(this);" method="POST">
+                <form action="" id="registerForm" onsubmit="return inputTablePerjalanan(this);" method="POST">
                     <div class="container"><br>
                         <div class ="form-group">
                             <label for="idBarang">ID BARANG*</label><br>
@@ -215,17 +215,17 @@ and open the template in the editor.
                         </div><br><br>                        
                         <div class ="form-group">
                             <label for="tanggalDiterima">Tanggal Diterima</label><br>
-                            <input type="text" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required/>
+                            <input type="text" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required disabled=""/>
                         </div><br>
                         <div class ="form-group">
                             <label for="waktuDiterima">Waktu Diterima</label><br>
-                            <input type="time" placeholder="Enter Waktu Diterima" id="waktuDiterima" required/>
+                            <input type="text" placeholder="Enter Waktu Diterima" id="waktuDiterima" required disabled=""/>
                         </div><br>                        
-<!--                        <div class="form-group">
+                        <div class="form-group">
                             <label for="namaPenerima">Nama Penerima</label><br>
                             <input type="text" placeholder="Enter Nama Penerima" id="namaPenerima" required/>
                         </div><br>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="namaKurir">Nama Kurir</label><br>
                             <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required/>
                             <input type="text" placeholder="--Nama Kurir--" id="namaKurir" required disabled=""/>
@@ -249,6 +249,7 @@ and open the template in the editor.
                     <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
                     <p id="output1"></p>
                     <p id="output2"></p>
+                    <!--<p id="output3"></p>-->
                 </form>
             </article>
         </section>
@@ -256,61 +257,64 @@ and open the template in the editor.
         <script>
             function inputTablePerjalanan(form) {
                 var json = {
+                    "idBarang": form.idBarang.value,
                     "tanggalDiterima": form.tanggalDiterima.value,
-                    "waktuDiterima": form.waktuDiterima.value
+                    "waktuDiterima": form.waktuDiterima.value,
+                    "namaPenerima": form.namaPenerima.value
                 };
                 var html = JSON.stringify(json, 0, 100);
 //                var url = "http://localhost:8084/RPL/webresources/Perjalanan/addPerjalanan";
-                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan";
+                var url = "http://202.94.83.190:8080/RPL/webresources/Perjalanan/addPerjalanan3";
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
                 xhttp.send(html);
 
                 alert(html);
-                document.getElementById("output2").innerHTML = html;
+//                document.getElementById("output2").innerHTML = html;
                 return false;
             }
 
             function loadDoc() {
 //                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
-                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + getCookie("idBarang");
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + getCookie("idBarang1");
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
                 xhttp.send();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-//                        document.getElementById("output3").innerHTML = this.responseText;
+//                        document.getElementById("output3").innerHTML = getCookie("idBarang1");
                         var myObj = JSON.parse(this.responseText);
+//                        alert(myObj);
                         document.getElementById("tanggalDiterima").value = myObj.tanggalDiterima;
-//                        document.getElementById("namaKurir").value = myObj[0].namaKurir;
-//                        document.getElementById("statusBarang").value = myObj[0].statusBarang;
+                        document.getElementById("waktuDiterima").value = myObj.waktuDiterima;
+                        document.getElementById("idBarang").value = myObj.idBarang;
                     }
                 }
             }
-            
-            function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
 
-        function checkCookie() {
-            var username = getCookie("idBarang");
-            if (username != "") {
-                document.getElementById("jadwal").value = username;
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
             }
-        }
+
+            function checkCookie() {
+                var username = getCookie("idBarang");
+                if (username != "") {
+                    document.getElementById("jadwal").value = username;
+                }
+            }
         </script>
 
         <footer>

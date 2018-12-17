@@ -205,26 +205,26 @@ and open the template in the editor.
 
             <article>
                 <h3 style="text-align: center;"><b><u>FORM INPUT STATUS</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return simpanTableBarang(this);" method="POST">
+                <form action="" id="registerForm" onsubmit="return inputTableBarang(this);">
                     <div class="container"><br>
                         <div class ="form-group">
                             <label for="idBarang">ID BARANG*</label><br>
                             <input type="text" placeholder="Enter ID Barang" id="idBarang" required/>
-                            <button type="button" onclick="loadDoc()" id="btn">Cari</button><!--<br><br>-->
+                            <!--<button type="button" onclick="loadDoc()" id="btn">Cari</button><br><br>-->
                             <!--<p id="output3"></p>-->
                         </div><br><br>                        
                         <div class ="form-group">
                             <label for="tanggalDiterima">Tanggal Diterima</label><br>
-                            <input type="text" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required/>
+                            <input type="date" placeholder="Enter Tanggal Diterima" id="tanggalDiterima" required/>
                         </div><br>
                         <div class ="form-group">
                             <label for="waktuDiterima">Waktu Diterima</label><br>
                             <input type="time" placeholder="Enter Waktu Diterima" id="waktuDiterima" required/>
                         </div><br>                        
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label for="namaPenerima">Nama Penerima</label><br>
                             <input type="text" placeholder="Enter Nama Penerima" id="namaPenerima" required/>
-                        </div><br>
+                        </div><br>-->
                         <div class="form-group">
                             <label for="namaKurir">Nama Kurir</label><br>
                             <input type="text" placeholder="Enter Nama Kurir" id="namaKurir" required/>
@@ -249,6 +249,7 @@ and open the template in the editor.
                     <br><br><a href="AfterLogin.html" style="text-decoration: none; font-size: 18px; float: left;"><--- BACK</a>
                     <p id="output1"></p>
                     <p id="output2"></p>
+                    <p id="output3"></p>
                 </form>
             </article>
         </section>
@@ -256,29 +257,30 @@ and open the template in the editor.
         <script>
             function inputTableBarang(form) {
                 var json = {
+                    "idBarang": form.idBarang.value,
                     "tanggalDiterima": form.tanggalDiterima.value,
                     "waktuDiterima": form.waktuDiterima.value,
-                    "namaPenerima": form.namaPenerima.value,
                     "namaKurir": form.namaKurir.value,
                     "statusBarang": form.statusBarang.value
                 };
                 var html = JSON.stringify(json, 0, 100);
 //                var url = "http://localhost:8084/RPL/webresources/barang/update";
-                var url = "http://202.94.83.190:8080/RPL_paket/webresources/barang/update";
+                var url = "http://202.94.83.190:8080/RPL/webresources/barang/update";
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", url, false);
+                xhttp.open("PUT", url, false);
                 xhttp.setRequestHeader("Content-type", "application/json");
-                openPage(form.tanggalDiterima.value);
+                openPage(form.idBarang.value);
                 xhttp.send(html);
 
-                alert(html);
-                document.getElementById("output1").innerHTML = html;
+//                alert(html);
+//                document.getElementById("output1").innerHTML = html;
                 return false;
             }
 
-            function openPage(tanggalDiterima) {
+            function openPage(idBarang) {
+                alert(idBarang);
                 var myMindow = window.open("FormInputStatus2.html", "_self");
-                setCookie("tanggalDiterima", tanggalDiterima, 1);
+                setCookie("idBarang1", idBarang, 1);
             }
 
             function setCookie(cname, cvalue, exdays) {
@@ -306,23 +308,23 @@ and open the template in the editor.
 //                return false;
 //            }
 
-            function loadDoc() {
-//                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
-                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", url, true);
-                xhttp.send();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-//                        document.getElementById("output3").innerHTML = this.responseText;
-                        var myObj = JSON.parse(this.responseText);
-                        document.getElementById("tanggalDiterima").value = myObj[0].tanggalDiterima;
-//                        document.getElementById("waktuDiterima").value = myObj[0].waktuDiterima;
-//                        document.getElementById("namaKurir").value = myObj[0].namaKurir;
-//                        document.getElementById("statusBarang").value = myObj[0].statusBarang;
-                    }
-                }
-            }
+//            function loadDoc() {
+////                var url = "http://localhost:8084/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+//                var url = "http://202.94.83.190:8080/RPL/webresources/barang/cariBarang?idBarang=" + idBarang.value;
+//                var xhttp = new XMLHttpRequest();
+//                xhttp.open("GET", url, true);
+//                xhttp.send();
+//                xhttp.onreadystatechange = function () {
+//                    if (this.readyState == 4 && this.status == 200) {
+////                        document.getElementById("output3").innerHTML = this.responseText;
+//                        var myObj = JSON.parse(this.responseText);
+//                        document.getElementById("tanggalDiterima").value = myObj[0].tanggalDiterima;
+////                        document.getElementById("waktuDiterima").value = myObj[0].waktuDiterima;
+////                        document.getElementById("namaKurir").value = myObj[0].namaKurir;
+////                        document.getElementById("statusBarang").value = myObj[0].statusBarang;
+//                    }
+//                }
+//            }
         </script>
 
         <footer>
